@@ -1,6 +1,17 @@
 @import "tailwindcss";
 
 @layer base {
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -16,8 +27,16 @@
     font-family: "Space Grotesk", "Sora", "Manrope", sans-serif;
     color: #262117;
     background:
-      radial-gradient(1500px 600px at -10% -20%, #ffe7bd 0%, rgba(255, 231, 189, 0) 60%),
-      radial-gradient(1100px 500px at 110% 0%, #dcebe6 0%, rgba(220, 235, 230, 0) 58%),
+      radial-gradient(
+        1500px 600px at -10% -20%,
+        #ffe7bd 0%,
+        rgba(255, 231, 189, 0) 60%
+      ),
+      radial-gradient(
+        1100px 500px at 110% 0%,
+        #dcebe6 0%,
+        rgba(220, 235, 230, 0) 58%
+      ),
       linear-gradient(180deg, #f4eee1 0%, #efe5d6 100%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
