@@ -20,6 +20,11 @@ export type ExperienceItem = {
   bullets: string[];
 };
 
+export type SkillCategory = {
+  label: string;
+  items: string[];
+};
+
 export const EXPERIENCE: ExperienceItem[] = [
   {
     role: "Software Developer",
@@ -69,6 +74,51 @@ export const STACK: string[] = [
   "Jest",
   "Playwright",
 ];
+
+export const STACK_GROUPS: SkillCategory[] = [
+  {
+    label: "Languages",
+    items: ["Python", "TypeScript", "JavaScript", "Java"],
+  },
+  {
+    label: "Backend & APIs",
+    items: [
+      "FastAPI",
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "WebSockets",
+      "Async Systems",
+      "gRPC*",
+    ],
+  },
+  {
+    label: "Databases",
+    items: ["PostgreSQL", "MongoDB", "Redis", "SQLite", "Pinecone (Vector DB)"],
+  },
+  {
+    label: "AI / LLM",
+    items: [
+      "RAG Pipelines",
+      "LLM Integration",
+      "Prompt Engineering",
+      "Vector Search",
+      "SQLCoder",
+      "Groq",
+      "LangChain",
+    ],
+  },
+  {
+    label: "Auth & Security",
+    items: ["JWT", "RBAC", "Multi-tenant Access Control", "Secure Coding"],
+  },
+  {
+    label: "Cloud & DevOps",
+    items: ["Docker", "AWS", "CI/CD", "Git", "Kubernetes*"],
+  },
+];
+
+export const STACK_NOTE = "* familiar";
 
 export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
   return [

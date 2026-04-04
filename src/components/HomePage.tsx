@@ -1,6 +1,6 @@
 import ProjectCard from "./ProjectCard";
-import Tag from "./Tag";
-import { EXPERIENCE, STACK, getProjects } from "../data/portfolio";
+import StackSection from "./StackSection";
+import { EXPERIENCE, getProjects } from "../data/portfolio";
 
 type HomePageProps = {
   cortexRoute: string;
@@ -159,19 +159,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         </div>
       </section>
 
-      <section
-        className="mt-10 w-full rounded-2xl border border-[rgba(132,102,59,0.28)] bg-[rgba(255,255,255,0.77)] p-5 backdrop-blur-sm md:p-7"
-        id="stack"
-      >
-        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-[#141008]">
-          Technical Stack
-        </h2>
-        <div className="mt-4 flex flex-wrap gap-2.5">
-          {STACK.map((skill) => (
-            <Tag key={skill}>{skill}</Tag>
-          ))}
-        </div>
-      </section>
+      <StackSection />
 
       <footer
         className="mt-10 mb-5 w-full rounded-2xl border border-[rgba(132,102,59,0.28)] bg-[rgba(255,255,255,0.77)] p-5 backdrop-blur-sm md:p-7"
