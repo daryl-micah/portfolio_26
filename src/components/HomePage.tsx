@@ -14,7 +14,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   return (
     <main className="mx-auto w-full max-w-279 animate-[rise-in_0.8s_ease] px-3 py-10 md:px-5 md:pb-12">
       <header className="w-full rounded-[1.4rem] border border-[rgba(132,102,59,0.28)] bg-[radial-gradient(circle_at_top_right,#ffd99f_0%,#f6f2e7_37%,#efe9de_100%)] p-5 shadow-[0_20px_45px_-35px_rgba(32,18,0,0.85)] md:p-9">
-        <nav className="mb-8 flex gap-4">
+        <nav className="mb-8 w-full flex gap-4">
           {[
             ["Projects", "projects"],
             ["Experience", "experience"],
@@ -49,11 +49,14 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             </h1>
           </div>
           <div className="flex w-[34%] min-w-27.5 justify-center">
-            <img
-              src="/default.png"
-              alt="Daryl Micah"
-              className="h-20 w-20 shrink-0 object-contain md:h-28 md:w-28"
-            />
+            <div className="flex items-center justify-center rounded-3xl bg-[rgba(255,255,255,0.25)] p-4">
+              <img
+                src="/default-removebg.png"
+                alt="Daryl Micah"
+                className="h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24 md:h-64 md:w-64 lg:h-80 lg:w-80"
+                style={{ filter: "brightness(0.75) saturate(1.6)" }}
+              />
+            </div>
           </div>
         </div>
 
