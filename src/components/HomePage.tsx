@@ -5,13 +5,14 @@ import { EXPERIENCE, STACK, getProjects } from "../data/portfolio";
 type HomePageProps = {
   cortexRoute: string;
   peanutUrl: string;
+  resumeUrl: string;
 };
 
-function HomePage({ cortexRoute, peanutUrl }: HomePageProps) {
+function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   const projects = getProjects(cortexRoute, peanutUrl);
 
   return (
-    <main className="mx-auto w-full max-w-[1080px] animate-[rise-in_0.8s_ease] px-3 py-10 md:px-5 md:pb-12">
+    <main className="mx-auto w-full max-w-279 animate-[rise-in_0.8s_ease] px-3 py-10 md:px-5 md:pb-12">
       <header className="w-full rounded-[1.4rem] border border-[rgba(132,102,59,0.28)] bg-[radial-gradient(circle_at_top_right,#ffd99f_0%,#f6f2e7_37%,#efe9de_100%)] p-5 shadow-[0_20px_45px_-35px_rgba(32,18,0,0.85)] md:p-9">
         <nav className="mb-8 flex gap-4">
           {[
@@ -28,6 +29,14 @@ function HomePage({ cortexRoute, peanutUrl }: HomePageProps) {
               {label}
             </a>
           ))}
+          <a
+            className="ml-auto rounded-md border border-[rgba(20,16,8,0.2)] bg-white/40 px-3 py-1 text-sm text-[#141008] shadow-[0_2px_6px_-1px_rgba(20,16,8,0.12)] transition hover:-translate-y-px hover:shadow-[0_4px_10px_-2px_rgba(20,16,8,0.18)]"
+            href={resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Resume
+          </a>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -39,7 +48,7 @@ function HomePage({ cortexRoute, peanutUrl }: HomePageProps) {
               Full-Stack Engineer. AI systems builder.
             </h1>
           </div>
-          <div className="flex w-[34%] min-w-[110px] justify-center">
+          <div className="flex w-[34%] min-w-27.5 justify-center">
             <img
               src="/default.png"
               alt="Daryl Micah"

@@ -10,12 +10,20 @@ const PEANUT_URL =
   import.meta.env.VITE_PEANUT_STORE_URL ??
   "https://play.google.com/store/apps/details?id=in.gov.apeda.peanut&pli=1";
 
+const RESUME_URL = import.meta.env.VITE_RESUME_LINK ?? "#";
+
 function App() {
   return (
     <Routes>
       <Route
         path="/"
-        element={<HomePage cortexRoute="/cortex-mail" peanutUrl={PEANUT_URL} />}
+        element={
+          <HomePage
+            cortexRoute="/cortex-mail"
+            peanutUrl={PEANUT_URL}
+            resumeUrl={RESUME_URL}
+          />
+        }
       />
       <Route
         path="/cortex-mail"
