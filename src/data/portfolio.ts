@@ -29,7 +29,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     role: "Software Developer",
     company: "Logicsoft International",
-    period: "Jan 2025 - Present - Gurugram",
+    period: "Jan 2025 - Apr 2026 - Gurugram",
     bullets: [
       "Built RAG pipelines and an LLM validation engine, reducing manual QA effort by 40%.",
       "Optimised PostgreSQL-heavy APIs and cut p95 latency by 70% via query tuning and Redis caching.",
