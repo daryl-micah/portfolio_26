@@ -99,6 +99,8 @@ export const STACK_GROUPS: SkillCategory[] = [
   {
     label: "AI / LLM",
     items: [
+      "Github Copilot",
+      "Google Antigravity",
       "RAG Pipelines",
       "LLM Integration",
       "Prompt Engineering",
@@ -126,7 +128,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       tag: "Featured - AI",
       title: "Cortex Mail",
       description:
-        "Agentic email client built on Next.js, Groq (Llama 3.1), and Pinecone. ReAct agent autonomously searches, summarises, and drafts replies with semantic retrieval across your inbox.",
+        "Agentic email client that searches inboxes, summarizes threads, and drafts replies using semantic retrieval and LLMs.",
       stack: ["Next.js", "Groq", "Pinecone", "ReAct", "TypeScript"],
       links: [
         { label: "Live app", href: cortexRoute, internal: true },
@@ -141,7 +143,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       tag: "Mobile - Fullstack",
       title: "APEDA Peanut",
       description:
-        "Offline-first React Native traceability app for agricultural supply chains. Features SQLite sync, geofencing, QR scanning, image capture, and a Node.js/PostgreSQL backend.",
+        "Offline-first traceability app with QR scanning, geofencing, image capture, and mobile-to-backend sync.",
       stack: ["React Native", "SQLite", "Node.js", "PostgreSQL", "TypeScript"],
       links: [{ label: "Play Store", href: peanutUrl }],
       accent: "bg-[#fffefa]",
@@ -150,9 +152,36 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       tag: "Backend - AI",
       title: "Agentic AI Platform",
       description:
-        "Internal LLM validation and RAG infrastructure built at Logicsoft. Includes a FastAPI orchestration layer, SQLCoder-8B for natural-language-to-SQL, JWT/RBAC auth, Redis caching, and a custom LLM validation engine that cut manual QA effort by 40%.",
+        "LLM validation and RAG platform with FastAPI orchestration, SQLCoder-based query generation, and Redis caching.",
       stack: ["FastAPI", "PostgreSQL", "Redis", "RAG", "SQLCoder", "Python"],
-      links: [],
+      links: [
+        {
+          label: "Live App",
+          href: "https://apps4food.com/solutions/intellichat",
+        },
+      ],
+      accent: "bg-[#fffefa]",
+    },
+    {
+      tag: "Web - AI",
+      title: "AI RFP Assistant",
+      description:
+        "AI-powered RFP workflow that structures requests, manages vendors, and automates email-based proposal handling.",
+      stack: [
+        "Next.js",
+        "Groq",
+        "TypeScript",
+        "Nodemailer",
+        "IMAP Flow",
+        "Drizzle",
+        "PostgreSQL(Neon)",
+      ],
+      links: [
+        {
+          label: "GitHub",
+          href: "https://github.com/daryl-micah/ai_rfp_system",
+        },
+      ],
       accent: "bg-[#fffefa]",
     },
   ];
