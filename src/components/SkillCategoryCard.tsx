@@ -6,7 +6,7 @@ type SkillCategoryCardProps = {
 
 function SkillCategoryCard({ category }: SkillCategoryCardProps) {
   return (
-    <div className="rounded-xl border border-[rgba(132,102,59,0.28)] bg-[#fffefa] p-4">
+    <div className="rounded-xl border border-[rgba(132,102,59,0.28)] bg-[#fffefa] p-4 motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md motion-reduce:transition-none">
       <p className="mb-3 text-xs font-semibold tracking-[0.14em] uppercase text-[#68563b]">
         {category.label}
       </p>
