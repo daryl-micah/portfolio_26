@@ -19,18 +19,6 @@ function useTheme() {
     root.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = (event: MediaQueryListEvent) => {
-      if (localStorage.getItem(STORAGE_KEY)) {
-        return;
-      }
-      setThemeState(event.matches ? "dark" : "light");
-    };
-    media.addEventListener("change", handler);
-    return () => media.removeEventListener("change", handler);
-  }, []);
-
   const setTheme = useCallback((next: Theme) => {
     localStorage.setItem(STORAGE_KEY, next);
     setThemeState(next);
