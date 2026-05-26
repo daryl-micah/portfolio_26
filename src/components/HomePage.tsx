@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
 import StackSection from "./StackSection";
+import ThemeToggle from "./ThemeToggle";
 import { EXPERIENCE, getProjects } from "../data/portfolio";
 import useScrollReveal from "./useScrollReveal";
 
@@ -157,6 +158,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             >
               Resume
             </a>
+            <ThemeToggle />
             <button
               ref={mobileButtonRef}
               type="button"
