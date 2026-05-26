@@ -157,7 +157,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
           "Type-safe Next.js App Router with server actions for mutations",
         ],
         role: "Solo design + build",
-        timeline: "2025",
+        timeline: "2026",
       },
     },
     {
@@ -168,6 +168,18 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       stack: ["React Native", "SQLite", "Node.js", "PostgreSQL", "TypeScript"],
       links: [{ label: "Play Store", href: peanutUrl }],
       accent: "bg-card",
+      details: {
+        overview:
+          "A field-grade traceability app for India's peanut export supply chain. Works fully offline in low-connectivity rural areas: officers capture QR scans, geo-fenced location samples, and photos on-device, then sync to the backend the moment a signal returns.",
+        highlights: [
+          "Offline-first architecture with SQLite as the source of truth and a deferred sync queue",
+          "Geofencing + on-device GPS sampling to validate that captures happened at the registered plot",
+          "QR scanning and image capture pipeline with local thumbnails and lazy upload",
+          "Conflict-aware sync workflow that reconciles mobile and PostgreSQL state without losing field edits",
+        ],
+        role: "Frontend lead",
+        timeline: "2024 – 2025",
+      },
     },
     {
       tag: "Backend - AI",
@@ -216,6 +228,18 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
         },
       ],
       accent: "bg-card",
+      details: {
+        overview:
+          "An end-to-end RFP workflow that turns vague procurement asks into structured, vendor-ready requests. Groq-backed LLMs draft requirements, an IMAP listener ingests vendor replies, and the system tracks every proposal back to its originating thread.",
+        highlights: [
+          "Groq-powered requirement extraction that converts free-text briefs into typed RFP schemas",
+          "Two-way email automation via Nodemailer + IMAP Flow with per-vendor thread tracking",
+          "Vendor and proposal management on Drizzle ORM over Neon Postgres for serverless reads",
+          "Next.js App Router with TypeScript end-to-end, from email parsing down to the UI",
+        ],
+        role: "Solo design + build",
+        timeline: "2025",
+      },
     },
   ];
 }
