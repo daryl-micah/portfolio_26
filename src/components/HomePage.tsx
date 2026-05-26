@@ -113,7 +113,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   ] as const;
 
   const navLinkClass =
-    "relative pb-1 text-[#141008] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#141008] motion-safe:after:transition-all motion-safe:after:duration-300 hover:after:w-full motion-reduce:after:transition-none";
+    "relative pb-1 text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-foreground motion-safe:after:transition-all motion-safe:after:duration-300 hover:after:w-full motion-reduce:after:transition-none";
 
   const closeMobileNav = () => {
     setMobileNavOpen(false);
@@ -127,14 +127,14 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
       <div
         className={`sticky top-0 z-50 mb-6 w-full rounded-[1.4rem] border border-transparent bg-transparent shadow-[0_20px_45px_-35px_rgba(32,18,0,0)] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out ${
           navScrolled
-            ? "border-[rgba(132,102,59,0.28)] bg-[rgba(246,242,231,0.8)] backdrop-blur-md shadow-[0_20px_45px_-35px_rgba(32,18,0,0.85)]"
+            ? "border-border bg-nav-blur-bg backdrop-blur-md shadow-[0_20px_45px_-35px_rgba(32,18,0,0.85)]"
             : "shadow-[0_20px_45px_-35px_rgba(32,18,0,0)]"
         }`}
       >
         <nav className="flex w-full items-center justify-between gap-3 px-4 py-4 md:px-6">
           <div className="flex items-center gap-6">
             <a
-              className="text-sm font-semibold uppercase tracking-[0.18em] text-[#141008]"
+              className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground"
               href="#top"
             >
               Daryl Micah
@@ -150,7 +150,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
           <div className="flex items-center gap-2">
             <a
-              className="hidden rounded-md border border-[rgba(20,16,8,0.2)] bg-white/40 px-3 py-1 text-sm text-[#141008] motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_4px_10px_-2px_rgba(20,16,8,0.18)] motion-reduce:transition-none md:inline-flex"
+              className="hidden rounded-md border border-border bg-surface-overlay px-3 py-1 text-sm text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_4px_10px_-2px_rgba(20,16,8,0.18)] motion-reduce:transition-none md:inline-flex"
               href={resumeUrl}
               target="_blank"
               rel="noreferrer"
@@ -163,7 +163,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
               aria-label="Open navigation menu"
               aria-expanded={mobileNavOpen}
               aria-controls="mobile-navigation"
-              className="inline-flex items-center justify-center rounded-md border border-[rgba(20,16,8,0.18)] bg-white/50 px-3 py-2 text-sm text-[#141008] md:hidden"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-surface-overlay px-3 py-2 text-sm text-foreground md:hidden"
               onClick={() => setMobileNavOpen(true)}
             >
               Menu
@@ -173,7 +173,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
       </div>
 
       <div
-        className={`fixed inset-0 z-40 bg-[rgba(20,16,8,0.56)] opacity-0 motion-safe:transition-opacity motion-safe:duration-300 motion-safe:ease-in-out motion-reduce:transition-none md:hidden ${
+        className={`fixed inset-0 z-40 bg-black/50 opacity-0 motion-safe:transition-opacity motion-safe:duration-300 motion-safe:ease-in-out motion-reduce:transition-none md:hidden ${
           mobileNavOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none"
@@ -189,22 +189,22 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         aria-modal="true"
         aria-label="Mobile navigation"
         tabIndex={-1}
-        className={`fixed inset-y-0 left-0 z-50 w-[min(84vw,20rem)] border-r border-[rgba(132,102,59,0.28)] bg-[rgba(246,242,231,0.98)] px-5 py-6 shadow-[0_18px_45px_rgba(32,18,0,0.18)] outline-none motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-in-out motion-reduce:transition-none md:hidden ${
+        className={`fixed inset-y-0 left-0 z-50 w-[min(84vw,20rem)] border-r border-border bg-card px-5 py-6 shadow-[0_18px_45px_rgba(32,18,0,0.18)] outline-none motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-in-out motion-reduce:transition-none md:hidden ${
           mobileNavOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="mb-8 flex items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#68563b]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-label">
               Navigation
             </p>
-            <p className="mt-1 text-lg font-semibold text-[#141008]">
+            <p className="mt-1 text-lg font-semibold text-foreground">
               Daryl Micah
             </p>
           </div>
           <button
             type="button"
-            className="rounded-md border border-[rgba(20,16,8,0.18)] bg-white/70 px-3 py-2 text-sm text-[#141008]"
+            className="rounded-md border border-border bg-surface-overlay px-3 py-2 text-sm text-foreground"
             onClick={closeMobileNav}
           >
             Close
@@ -217,7 +217,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
               key={label}
               href={`#${target}`}
               onClick={closeMobileNav}
-              className={`reveal-item rounded-xl border border-transparent px-3 py-2 text-lg font-medium text-[#141008] ${
+              className={`reveal-item rounded-xl border border-transparent px-3 py-2 text-lg font-medium text-foreground ${
                 index === 0
                   ? "delay-100"
                   : index === 1
@@ -235,7 +235,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             target="_blank"
             rel="noreferrer"
             onClick={closeMobileNav}
-            className="reveal-item mt-2 rounded-xl border border-[rgba(20,16,8,0.18)] bg-white/70 px-3 py-2 text-base font-medium text-[#141008] delay-400"
+            className="reveal-item mt-2 rounded-xl border border-border bg-surface-overlay px-3 py-2 text-base font-medium text-foreground delay-400"
           >
             Resume
           </a>
@@ -245,30 +245,29 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
       <header
         id="top"
         data-reveal
-        className="w-full rounded-[1.4rem] border border-[rgba(132,102,59,0.28)] bg-[radial-gradient(circle_at_top_right,#ffd99f_0%,#f6f2e7_37%,#efe9de_100%)] p-5 shadow-[0_20px_45px_-35px_rgba(32,18,0,0.85)] md:p-9"
+        className="hero-surface w-full rounded-[1.4rem] border border-border p-5 shadow-[0_20px_45px_-35px_rgba(32,18,0,0.85)] md:p-9"
       >
         <div className="flex items-center gap-4">
           <div className="flex-1">
-            <p className="mb-2 text-base tracking-[0.18em] uppercase text-[#68563b]">
+            <p className="mb-2 text-base tracking-[0.18em] uppercase text-label">
               Daryl Micah
             </p>
-            <h1 className="max-w-[17ch] text-[clamp(2rem,5vw,3.6rem)] leading-[1.1] font-semibold tracking-[-0.02em] text-[#141008]">
+            <h1 className="max-w-[17ch] text-[clamp(2rem,5vw,3.6rem)] leading-[1.1] font-semibold tracking-[-0.02em] text-foreground">
               Full-Stack Engineer. AI systems builder.
             </h1>
           </div>
           <div className="flex w-[34%] min-w-27.5 justify-center">
-            <div className="flex items-center justify-center rounded-3xl bg-[rgba(255,255,255,0.25)] p-4">
+            <div className="flex items-center justify-center rounded-3xl bg-surface-overlay/40 p-4">
               <img
                 src="/default-removebg.png"
                 alt="Daryl Micah"
-                className="h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24 md:h-64 md:w-64 lg:h-80 lg:w-80"
-                style={{ filter: "brightness(0.75) saturate(1.6)" }}
+                className="portrait-tint h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24 md:h-64 md:w-64 lg:h-80 lg:w-80"
               />
             </div>
           </div>
         </div>
 
-        <p className="mt-3 max-w-[65ch] text-[#262117]">
+        <p className="mt-3 max-w-[65ch] text-muted-foreground">
           2.5+ years shipping production web, mobile, and backend systems across
           React, Node.js, FastAPI, and Python - with a recent focus on RAG
           pipelines, LLM validation, and agentic AI products.
@@ -276,7 +275,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
         <div className="my-6 flex flex-wrap gap-x-5 gap-y-3">
           <a
-            className="border-b border-transparent text-[#141008] motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
             href="mailto:darylmicah12@gmail.com"
           >
             darylmicah12@gmail.com
@@ -285,7 +284,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             href="https://github.com/daryl-micah"
             target="_blank"
             rel="noreferrer"
-            className="border-b border-transparent text-[#141008] motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
           >
             GitHub
           </a>
@@ -293,7 +292,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             href="https://linkedin.com/in/daryl-micah"
             target="_blank"
             rel="noreferrer"
-            className="border-b border-transparent text-[#141008] motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
           >
             LinkedIn
           </a>
@@ -309,7 +308,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             <article
               key={stat}
               data-reveal
-              className={`reveal-item rounded-2xl border border-[rgba(127,96,44,0.16)] bg-[rgba(255,255,255,0.62)] p-4 ${
+              className={`reveal-item rounded-2xl border border-border bg-surface-overlay p-4 ${
                 index === 0
                   ? "delay-100"
                   : index === 1
@@ -319,10 +318,10 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
                       : "delay-400"
               }`}
             >
-              <p className="m-0 text-[clamp(1.6rem,4vw,2.1rem)] font-bold text-[#a04800]">
+              <p className="m-0 text-[clamp(1.6rem,4vw,2.1rem)] font-bold text-accent">
                 {stat}
               </p>
-              <p className="text-sm text-[#3a2e1e]">{label}</p>
+              <p className="text-sm text-muted-foreground">{label}</p>
             </article>
           ))}
         </div>
@@ -330,10 +329,10 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
       <section
         data-reveal
-        className="mt-10 w-full rounded-2xl border border-[rgba(132,102,59,0.28)] bg-[rgba(255,255,255,0.77)] p-5 backdrop-blur-sm md:p-7"
+        className="mt-10 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
         id="projects"
       >
-        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-[#141008]">
+        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
           Projects
         </h2>
         <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -351,10 +350,10 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
       <section
         data-reveal
-        className="mt-10 w-full rounded-2xl border border-[rgba(132,102,59,0.28)] bg-[rgba(255,255,255,0.77)] p-5 backdrop-blur-sm md:p-7"
+        className="mt-10 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
         id="experience"
       >
-        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-[#141008]">
+        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
           Experience
         </h2>
         <div className="mt-5 grid gap-4">
@@ -362,21 +361,21 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             <article
               key={exp.company}
               data-reveal
-              className={`reveal-item rounded-xl border border-[rgba(132,102,59,0.28)] bg-[#fffefa] p-5 motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md motion-reduce:transition-none ${
+              className={`reveal-item rounded-xl border border-border bg-card p-5 motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md motion-reduce:transition-none ${
                 index === 0 ? "delay-100" : "delay-200"
               }`}
             >
               <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-[1.05rem] font-semibold text-[#141008]">
+                <h3 className="text-[1.05rem] font-semibold text-foreground">
                   {exp.role} - {exp.company}
                 </h3>
-                <p className="text-sm text-[#68563b]">{exp.period}</p>
+                <p className="text-sm text-label">{exp.period}</p>
               </div>
               <ul className="mt-2 space-y-1.5 pl-4">
                 {exp.bullets.map((bullet) => (
                   <li
                     key={bullet}
-                    className="list-disc text-sm leading-relaxed text-[#3a2e1e]"
+                    className="list-disc text-sm leading-relaxed text-muted-foreground"
                   >
                     {bullet}
                   </li>
@@ -391,24 +390,24 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
       <footer
         data-reveal
-        className="mt-10 mb-5 w-full rounded-2xl border border-[rgba(132,102,59,0.28)] bg-[rgba(255,255,255,0.77)] p-5 backdrop-blur-sm md:p-7"
+        className="mt-10 mb-5 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
         id="contact"
       >
-        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-[#141008]">
+        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
           Let&apos;s Build
         </h2>
-        <p className="mt-1 text-[#3a2e1e]">
+        <p className="mt-1 text-muted-foreground">
           Open to fullstack and backend+AI roles at product-focused companies.
         </p>
         <div className="my-6 flex flex-wrap gap-x-5 gap-y-3">
           <a
-            className="border-b border-transparent text-[#141008] motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
             href="mailto:darylmicah12@gmail.com"
           >
             darylmicah12@gmail.com
           </a>
           <a
-            className="border-b border-transparent text-[#141008] motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
             href="tel:+918588099970"
           >
             +91 8588099970
@@ -417,7 +416,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             href="https://linkedin.com/in/daryl-micah"
             target="_blank"
             rel="noreferrer"
-            className="border-b border-transparent text-[#141008] motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
           >
             LinkedIn
           </a>
@@ -425,7 +424,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             href="https://github.com/daryl-micah"
             target="_blank"
             rel="noreferrer"
-            className="border-b border-transparent text-[#141008] motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
           >
             GitHub
           </a>

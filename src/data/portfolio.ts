@@ -137,7 +137,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
           href: "https://github.com/daryl-micah/cortex-mail",
         },
       ],
-      accent: "bg-[linear-gradient(145deg,#fff8d8_0%,#fff1ca_100%)]",
+      accent: "bg-[linear-gradient(145deg,var(--accent-soft)_0%,var(--card)_100%)]",
     },
     {
       tag: "Mobile - Fullstack",
@@ -146,7 +146,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
         "Offline-first traceability app with QR scanning, geofencing, image capture, and mobile-to-backend sync.",
       stack: ["React Native", "SQLite", "Node.js", "PostgreSQL", "TypeScript"],
       links: [{ label: "Play Store", href: peanutUrl }],
-      accent: "bg-[#fffefa]",
+      accent: "bg-card",
     },
     {
       tag: "Backend - AI",
@@ -160,7 +160,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
           href: "https://apps4food.com/solutions/intellichat",
         },
       ],
-      accent: "bg-[#fffefa]",
+      accent: "bg-card",
     },
     {
       tag: "Web - AI",
@@ -182,7 +182,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
           href: "https://github.com/daryl-micah/ai_rfp_system",
         },
       ],
-      accent: "bg-[#fffefa]",
+      accent: "bg-card",
     },
   ];
 }

@@ -9,10 +9,10 @@ function StackSection() {
     <section
       ref={sectionRef}
       data-reveal
-      className="mt-10 w-full rounded-2xl border border-[rgba(132,102,59,0.28)] bg-[rgba(255,255,255,0.77)] p-5 backdrop-blur-sm md:p-7"
+      className="mt-10 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
       id="stack"
     >
-      <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-[#141008]">
+      <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
         Technical Stack
       </h2>
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -26,7 +26,7 @@ function StackSection() {
           </div>
         ))}
       </div>
-      <p className="mt-3 text-xs text-[#68563b]">{STACK_NOTE}</p>
+      <p className="mt-3 text-xs text-label">{STACK_NOTE}</p>
     </section>
   );
 }
