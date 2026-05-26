@@ -8,11 +8,19 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import ProjectCard from "./ProjectCard";
 import StackSection from "./StackSection";
 import ThemeToggle from "./ThemeToggle";
 import ScrollProgress from "./ScrollProgress";
 import AnimatedCounter from "./AnimatedCounter";
+import MagneticLink from "./MagneticLink";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   fadeUp,
   fadeUpSmall,
@@ -21,7 +29,6 @@ import {
   VIEWPORT_ONCE,
 } from "./motion/MotionPrimitives";
 import { EXPERIENCE, getProjects } from "../data/portfolio";
-import useScrollReveal from "./useScrollReveal";
 import useActiveSection from "../hooks/useActiveSection";
 
 type HomePageProps = {
@@ -42,8 +49,8 @@ const HERO_STATS = [
 
 function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   const projects = getProjects(cortexRoute, peanutUrl);
-  const pageRef = useScrollReveal<HTMLElement>();
   const heroRef = useRef<HTMLElement | null>(null);
+  const experienceRef = useRef<HTMLElement | null>(null);
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const sidebarRef = useRef<HTMLElement | null>(null);
@@ -60,6 +67,12 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   const orbScale = useTransform(heroProgress, [0, 1], [1, 1.25]);
   const orbYSpring = useSpring(orbY, { stiffness: 80, damping: 30 });
   const orbScaleSpring = useSpring(orbScale, { stiffness: 80, damping: 30 });
+
+  const { scrollYProgress: experienceProgress } = useScroll({
+    target: experienceRef,
+    offset: ["start end", "end start"],
+  });
+  const timelineHeight = useTransform(experienceProgress, [0, 1], ["0%", "100%"]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -163,10 +176,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   };
 
   return (
-    <main
-      ref={pageRef}
-      className="mx-auto w-full max-w-279 px-3 py-10 md:px-5 md:pb-12"
-    >
+    <main className="mx-auto w-full max-w-279 px-3 py-10 md:px-5 md:pb-12">
       <ScrollProgress />
       <div
         className={`sticky top-0 z-50 mb-6 w-full rounded-[1.4rem] border border-transparent bg-transparent shadow-[0_20px_45px_-35px_rgba(32,18,0,0)] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out ${
@@ -467,109 +477,167 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         </motion.div>
       </header>
 
-      <section
-        data-reveal
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="mt-10 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
         id="projects"
       >
         <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
           Projects
         </h2>
-        <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {projects.map((project, index) => (
-            <div
+        <motion.div
+          variants={staggerContainer(0.1, 0.05)}
+          initial="hidden"
+          whileInView="show"
+          viewport={VIEWPORT_ONCE}
+          className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3"
+        >
+          {projects.map((project) => (
+            <motion.div
               key={project.title}
-              data-reveal
-              className={`reveal-item ${index === 0 ? "delay-100" : index === 1 ? "delay-200" : "delay-300"}`}
+              variants={{
+                hidden: { opacity: 0, y: 32 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
             >
               <ProjectCard project={project} />
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
-      <section
-        data-reveal
-        className="mt-10 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
+      <motion.section
+        ref={experienceRef}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mt-10 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
         id="experience"
       >
         <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
           Experience
         </h2>
-        <div className="mt-5 grid gap-4">
-          {EXPERIENCE.map((exp, index) => (
-            <article
-              key={exp.company}
-              data-reveal
-              className={`reveal-item rounded-xl border border-border bg-card p-5 motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md motion-reduce:transition-none ${
-                index === 0 ? "delay-100" : "delay-200"
-              }`}
-            >
-              <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-[1.05rem] font-semibold text-foreground">
-                  {exp.role} - {exp.company}
-                </h3>
-                <p className="text-sm text-label">{exp.period}</p>
-              </div>
-              <ul className="mt-2 space-y-1.5 pl-4">
-                {exp.bullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    className="list-disc text-sm leading-relaxed text-muted-foreground"
+        <div className="relative mt-5">
+          <div
+            aria-hidden="true"
+            className="absolute left-2 top-2 bottom-2 w-px bg-border md:left-3"
+          />
+          <motion.div
+            aria-hidden="true"
+            style={
+              reduceMotion ? undefined : { height: timelineHeight }
+            }
+            className="absolute left-2 top-2 w-px bg-accent md:left-3"
+          />
+          <Accordion
+            type="single"
+            collapsible
+            defaultValue="exp-0"
+            className="grid gap-2 pl-7 md:pl-9"
+          >
+            {EXPERIENCE.map((exp, index) => (
+              <AccordionItem
+                key={exp.company}
+                value={`exp-${index}`}
+                className="rounded-xl border border-border bg-card px-4 last:border-b"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-[1.65rem] top-7 h-2.5 w-2.5 rounded-full border border-accent bg-card md:-left-[1.9rem]"
+                />
+                <AccordionTrigger className="text-left">
+                  <div className="flex flex-1 flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="text-[1.05rem] font-semibold text-foreground">
+                      {exp.role} &mdash; {exp.company}
+                    </h3>
+                    <p className="text-sm text-label">{exp.period}</p>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <motion.ul
+                    variants={staggerContainer(0.06, 0.05)}
+                    initial="hidden"
+                    animate="show"
+                    className="space-y-1.5 pl-4"
                   >
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+                    {exp.bullets.map((bullet) => (
+                      <motion.li
+                        key={bullet}
+                        variants={fadeUpSmall}
+                        className="list-disc text-sm leading-relaxed text-muted-foreground"
+                      >
+                        {bullet}
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
-      </section>
+      </motion.section>
 
       <StackSection />
 
-      <footer
-        data-reveal
+      <motion.footer
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="mt-10 mb-5 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
         id="contact"
       >
-        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
-          Let&apos;s Build
+        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug">
+          <span className="gradient-text">Let&apos;s Build</span>
         </h2>
         <p className="mt-1 text-muted-foreground">
           Open to fullstack and backend+AI roles at product-focused companies.
         </p>
         <div className="my-6 flex flex-wrap gap-x-5 gap-y-3">
-          <a
-            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+          <MagneticLink
             href="mailto:darylmicah12@gmail.com"
+            className="inline-flex items-center gap-1 border-b border-transparent text-foreground hover:border-current transition-colors"
           >
             darylmicah12@gmail.com
-          </a>
-          <a
-            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+          </MagneticLink>
+          <MagneticLink
             href="tel:+918588099970"
+            className="inline-flex items-center gap-1 border-b border-transparent text-foreground hover:border-current transition-colors"
           >
             +91 8588099970
-          </a>
-          <a
+          </MagneticLink>
+          <MagneticLink
             href="https://linkedin.com/in/daryl-micah"
-            target="_blank"
-            rel="noreferrer"
-            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            external
+            className="group inline-flex items-center gap-1 border-b border-transparent text-foreground hover:border-current transition-colors"
           >
             LinkedIn
-          </a>
-          <a
+            <ArrowUpRight
+              className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </MagneticLink>
+          <MagneticLink
             href="https://github.com/daryl-micah"
-            target="_blank"
-            rel="noreferrer"
-            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            external
+            className="group inline-flex items-center gap-1 border-b border-transparent text-foreground hover:border-current transition-colors"
           >
             GitHub
-          </a>
+            <ArrowUpRight
+              className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </MagneticLink>
         </div>
-      </footer>
+      </motion.footer>
     </main>
   );
 }

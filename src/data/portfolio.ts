@@ -4,6 +4,13 @@ export type ProjectLink = {
   internal?: boolean;
 };
 
+export type ProjectDetails = {
+  overview: string;
+  highlights: string[];
+  role?: string;
+  timeline?: string;
+};
+
 export type Project = {
   tag: string;
   title: string;
@@ -11,6 +18,7 @@ export type Project = {
   stack: string[];
   links: ProjectLink[];
   accent: string;
+  details?: ProjectDetails;
 };
 
 export type ExperienceItem = {
@@ -137,7 +145,20 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
           href: "https://github.com/daryl-micah/cortex-mail",
         },
       ],
-      accent: "bg-[linear-gradient(145deg,var(--accent-soft)_0%,var(--card)_100%)]",
+      accent:
+        "bg-[linear-gradient(145deg,var(--accent-soft)_0%,var(--card)_100%)]",
+      details: {
+        overview:
+          "Cortex Mail is an agentic email client that understands your inbox semantically. It indexes threads into a vector store, summarizes long conversations, and drafts on-tone replies using a ReAct-style reasoning loop.",
+        highlights: [
+          "Semantic search over Gmail + IMAP using Pinecone-backed embeddings",
+          "ReAct agent that plans multi-step actions across reading, search, and drafting",
+          "Streamed Groq inference for sub-second summary generation",
+          "Type-safe Next.js App Router with server actions for mutations",
+        ],
+        role: "Solo design + build",
+        timeline: "2025",
+      },
     },
     {
       tag: "Mobile - Fullstack",
@@ -161,6 +182,18 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
         },
       ],
       accent: "bg-card",
+      details: {
+        overview:
+          "An LLM validation and RAG orchestration platform that grounds chatbot answers in a customer's PostgreSQL data. SQLCoder generates safe read-only queries, RAG provides the context, and a validation layer scores LLM outputs against a known-good fixture set.",
+        highlights: [
+          "Cut manual QA effort by 40% via an automated LLM validation engine",
+          "Reduced API p95 latency by 70% with Redis caching and query tuning",
+          "SQLCoder-backed natural language to SQL with read-only guardrails",
+          "FastAPI orchestration with async batching for high-throughput RAG queries",
+        ],
+        role: "Backend lead",
+        timeline: "2025",
+      },
     },
     {
       tag: "Web - AI",
