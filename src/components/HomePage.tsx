@@ -6,7 +6,6 @@ import {
   motion,
   useReducedMotion,
   useScroll,
-  useSpring,
   useTransform,
 } from "motion/react";
 import { ArrowUpRight, Mail, MapPin, User } from "lucide-react";
@@ -61,7 +60,6 @@ const HERO_STATS = [
 
 function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   const projects = getProjects(cortexRoute, peanutUrl);
-  const heroRef = useRef<HTMLElement | null>(null);
   const experienceRef = useRef<HTMLElement | null>(null);
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -70,15 +68,6 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   const focusReturnRef = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion();
   const activeSection = useActiveSection(SECTION_IDS);
-
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const orbY = useTransform(heroProgress, [0, 1], [0, 180]);
-  const orbScale = useTransform(heroProgress, [0, 1], [1, 1.25]);
-  const orbYSpring = useSpring(orbY, { stiffness: 80, damping: 30 });
-  const orbScaleSpring = useSpring(orbScale, { stiffness: 80, damping: 30 });
 
   const { scrollYProgress: experienceProgress } = useScroll({
     target: experienceRef,
@@ -351,23 +340,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         </motion.div>
       </motion.aside>
 
-      <header
-        ref={heroRef}
-        id="top"
-        className="relative w-full overflow-hidden py-6 md:py-10"
-      >
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full bg-accent/15 blur-3xl"
-          style={
-            reduceMotion ? undefined : { y: orbYSpring, scale: orbScaleSpring }
-          }
-        />
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-32 bottom-0 h-[360px] w-[360px] rounded-full bg-accent-soft blur-3xl"
-        />
-
+      <header id="top" className="relative w-full py-6 md:py-10">
         <motion.div
           className="relative flex items-center gap-4"
           variants={staggerContainer(0.07, 0.1)}
