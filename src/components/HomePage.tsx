@@ -176,7 +176,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   };
 
   return (
-    <main className="mx-auto w-full max-w-279 px-3 py-10 md:px-5 md:pb-12">
+    <main className="mx-auto w-full max-w-4xl px-3 py-10 md:px-5 md:pb-12">
       <ScrollProgress />
       <div
         className={`sticky top-0 z-50 mb-6 w-full rounded-[1.4rem] border border-transparent bg-transparent shadow-[0_20px_45px_-35px_rgba(32,18,0,0)] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out ${
