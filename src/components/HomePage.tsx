@@ -28,6 +28,7 @@ import ScrollProgress from "./ScrollProgress";
 import AnimatedCounter from "./AnimatedCounter";
 import ContributionsGraph from "./ContributionsGraph";
 import MagneticLink from "./MagneticLink";
+import VisitorCounter from "./VisitorCounter";
 import {
   Accordion,
   AccordionContent,
@@ -643,6 +644,23 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           </MagneticLink>
         </div>
       </motion.footer>
+
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-10 mb-5 grid w-full grid-cols-1 items-center gap-6 border-t border-border pt-8 md:grid-cols-[1fr_auto]"
+        aria-label="Closing remarks"
+      >
+        <blockquote className="border-l-2 border-border pl-4 text-sm leading-relaxed text-muted-foreground">
+          &ldquo;Talk is cheap. Show me the code.&rdquo;
+          <footer className="mt-1 text-xs text-label">
+            &mdash; Linus Torvalds
+          </footer>
+        </blockquote>
+        <VisitorCounter />
+      </motion.section>
     </main>
   );
 }
