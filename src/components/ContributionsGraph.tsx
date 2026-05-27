@@ -32,7 +32,7 @@ function ContributionsGraph({ username }: ContributionsGraphProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={VIEWPORT_ONCE}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="mt-10 w-full"
+      className="mt-10 w-full px-5 md:px-7"
       aria-label="GitHub contributions"
     >
       <p className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">

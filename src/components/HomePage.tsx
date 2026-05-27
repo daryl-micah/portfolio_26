@@ -341,7 +341,10 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         </motion.div>
       </motion.aside>
 
-      <header id="top" className="relative w-full py-6 md:py-10">
+      <header
+        id="top"
+        className="relative w-full px-5 py-6 md:px-7 md:py-10"
+      >
         <motion.div
           className="relative flex items-center gap-4"
           variants={staggerContainer(0.07, 0.1)}
