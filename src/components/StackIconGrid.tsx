@@ -86,7 +86,7 @@ function StackIconGrid() {
               title={label}
               aria-label={label}
             >
-              <Icon className="h-7 w-7 text-muted-foreground transition-colors hover:text-foreground" />
+              <Icon color="default" className="h-7 w-7 transition-transform" />
             </motion.li>
           );
         })}
