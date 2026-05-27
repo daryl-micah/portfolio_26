@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 const ENDPOINT =
-  "https://abacus.jasoncameron.dev/hit/daryl-micah-portfolio/visits";
+  "https://abacus.jasoncameron.dev/hit/daryl-micah-portfolio/visits-v2?initializer=110";
 
 function ordinal(n: number): string {
   const v = n % 100;
