@@ -345,6 +345,15 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         id="top"
         className="relative w-full px-5 py-6 md:px-7 md:py-10"
       >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-32 -top-24 -z-10 h-[420px] w-[420px] rounded-full bg-accent/10 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-40 top-1/2 -z-10 h-[360px] w-[360px] -translate-y-1/2 rounded-full bg-accent-soft blur-3xl"
+        />
+
         <motion.div
           className="relative flex items-center gap-4"
           variants={staggerContainer(0.07, 0.1)}
@@ -493,11 +502,11 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={VIEWPORT_ONCE}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-10 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
+        className="mt-10 w-full px-5 py-6 md:px-7 md:py-8"
         id="projects"
       >
-        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
-          Projects
+        <h2 className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">
+          Featured Projects
         </h2>
         <motion.div
           variants={staggerContainer(0.1, 0.05)}
@@ -530,10 +539,10 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={VIEWPORT_ONCE}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mt-10 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
+        className="relative mt-10 w-full px-5 py-6 md:px-7 md:py-8"
         id="experience"
       >
-        <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug text-foreground">
+        <h2 className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">
           Experience
         </h2>
         <div className="relative mt-5">
@@ -601,7 +610,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={VIEWPORT_ONCE}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-10 mb-5 w-full rounded-2xl border border-border bg-card-translucent p-5 backdrop-blur-sm md:p-7"
+        className="mt-10 mb-5 w-full px-5 py-6 md:px-7 md:py-8"
         id="contact"
       >
         <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug">
