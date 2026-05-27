@@ -28,11 +28,6 @@ export type ExperienceItem = {
   bullets: string[];
 };
 
-export type SkillCategory = {
-  label: string;
-  items: string[];
-};
-
 export const EXPERIENCE: ExperienceItem[] = [
   {
     role: "Software Developer",
@@ -64,71 +59,31 @@ export const EXPERIENCE: ExperienceItem[] = [
   },
 ];
 
-export const STACK: string[] = [
-  "React.js",
-  "React Native",
-  "Next.js",
-  "Node.js",
-  "FastAPI",
-  "TypeScript",
-  "Python",
-  "PostgreSQL",
-  "Redis",
-  "MongoDB",
-  "RAG / LLM",
-  "Pinecone",
-  "Docker",
-  "AWS",
-  "Jest",
-  "Playwright",
-];
+export type StackIcon = {
+  slug: string;
+  label: string;
+};
 
-export const STACK_GROUPS: SkillCategory[] = [
-  {
-    label: "Languages",
-    items: ["Python", "TypeScript", "JavaScript", "Java"],
-  },
-  {
-    label: "Backend & APIs",
-    items: [
-      "FastAPI",
-      "Node.js",
-      "Express.js",
-      "REST APIs",
-      "WebSockets",
-      "Async Systems",
-      "gRPC*",
-    ],
-  },
-  {
-    label: "Databases",
-    items: ["PostgreSQL", "MongoDB", "Redis", "SQLite", "Pinecone (Vector DB)"],
-  },
-  {
-    label: "AI / LLM",
-    items: [
-      "Github Copilot",
-      "Google Antigravity",
-      "RAG Pipelines",
-      "LLM Integration",
-      "Prompt Engineering",
-      "Vector Search",
-      "SQLCoder",
-      "Groq",
-      "LangChain",
-    ],
-  },
-  {
-    label: "Auth & Security",
-    items: ["JWT", "RBAC", "Multi-tenant Access Control", "Secure Coding"],
-  },
-  {
-    label: "Cloud & DevOps",
-    items: ["Docker", "AWS", "CI/CD", "Git", "Kubernetes*"],
-  },
+export const STACK_ICONS: StackIcon[] = [
+  { slug: "typescript", label: "TypeScript" },
+  { slug: "javascript", label: "JavaScript" },
+  { slug: "python", label: "Python" },
+  { slug: "openjdk", label: "Java" },
+  { slug: "react", label: "React" },
+  { slug: "nextdotjs", label: "Next.js" },
+  { slug: "nodedotjs", label: "Node.js" },
+  { slug: "express", label: "Express" },
+  { slug: "fastapi", label: "FastAPI" },
+  { slug: "postgresql", label: "PostgreSQL" },
+  { slug: "mongodb", label: "MongoDB" },
+  { slug: "redis", label: "Redis" },
+  { slug: "docker", label: "Docker" },
+  { slug: "git", label: "Git" },
+  { slug: "github", label: "GitHub" },
+  { slug: "tailwindcss", label: "Tailwind CSS" },
+  { slug: "vite", label: "Vite" },
+  { slug: "langchain", label: "LangChain" },
 ];
-
-export const STACK_NOTE = "* familiar";
 
 export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
   return [

@@ -22,7 +22,7 @@ const LinkedInIcon = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 import ProjectCard from "./ProjectCard";
-import StackSection from "./StackSection";
+import StackIconGrid from "./StackIconGrid";
 import ThemeToggle from "./ThemeToggle";
 import ScrollProgress from "./ScrollProgress";
 import AnimatedCounter from "./AnimatedCounter";
@@ -482,6 +482,8 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
       <ContributionsGraph username="daryl-micah" />
 
+      <StackIconGrid />
+
       <motion.section
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -589,8 +591,6 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           </Accordion>
         </div>
       </motion.section>
-
-      <StackSection />
 
       <motion.footer
         initial={{ opacity: 0, y: 24 }}
