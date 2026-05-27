@@ -27,6 +27,7 @@ import StackSection from "./StackSection";
 import ThemeToggle from "./ThemeToggle";
 import ScrollProgress from "./ScrollProgress";
 import AnimatedCounter from "./AnimatedCounter";
+import ContributionsGraph from "./ContributionsGraph";
 import MagneticLink from "./MagneticLink";
 import {
   Accordion,
@@ -505,6 +506,8 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           ))}
         </motion.p>
       </header>
+
+      <ContributionsGraph username="daryl-micah" />
 
       <motion.section
         initial={{ opacity: 0, y: 24 }}
