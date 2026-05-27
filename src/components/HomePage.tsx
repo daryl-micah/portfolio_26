@@ -35,7 +35,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
-  fadeUp,
   fadeUpSmall,
   springBouncy,
   staggerContainer,
@@ -53,10 +52,10 @@ type HomePageProps = {
 const SECTION_IDS = ["top", "projects", "experience", "stack", "contact"];
 
 const HERO_STATS = [
-  { value: 32, label: "RAG query accuracy improvement" },
-  { value: 70, label: "API latency reduction" },
-  { value: 40, label: "manual QA effort cut via LLM automation" },
-  { value: 71, label: "app load time improvement" },
+  { value: 32, label: "RAG accuracy" },
+  { value: 70, label: "latency cut" },
+  { value: 40, label: "QA effort cut" },
+  { value: 71, label: "load time" },
 ] as const;
 
 function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
@@ -484,26 +483,27 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           </a>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer(0.12, 0.3)}
-          initial="hidden"
-          whileInView="show"
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_ONCE}
-          className="relative mt-6 grid grid-cols-1 gap-4 md:grid-cols-4"
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-sm text-muted-foreground"
         >
-          {HERO_STATS.map(({ value, label }) => (
-            <motion.article
-              key={label}
-              variants={fadeUp}
-              className="rounded-2xl border border-border bg-surface-overlay p-4"
-            >
-              <p className="m-0 text-[clamp(1.6rem,4vw,2.1rem)] font-bold text-accent">
+          {HERO_STATS.map(({ value, label }, idx) => (
+            <span key={label} className="inline-flex items-baseline gap-1.5">
+              {idx > 0 && (
+                <span aria-hidden="true" className="text-label">
+                  &middot;
+                </span>
+              )}
+              <span className="font-semibold text-accent">
                 <AnimatedCounter target={value} suffix="%" />
-              </p>
-              <p className="text-sm text-muted-foreground">{label}</p>
-            </motion.article>
+              </span>
+              <span>{label}</span>
+            </span>
           ))}
-        </motion.div>
+        </motion.p>
       </header>
 
       <motion.section
