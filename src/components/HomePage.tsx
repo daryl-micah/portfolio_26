@@ -500,7 +500,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           initial="hidden"
           whileInView="show"
           viewport={VIEWPORT_ONCE}
-          className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3"
+          className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2"
         >
           {projects.map((project) => (
             <motion.div
