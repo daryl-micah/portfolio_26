@@ -68,7 +68,7 @@ export const STACK_ICONS: StackIcon[] = [
   { slug: "typescript", label: "TypeScript" },
   { slug: "javascript", label: "JavaScript" },
   { slug: "python", label: "Python" },
-  { slug: "openjdk", label: "Java" },
+  { slug: "java", label: "Java" },
   { slug: "react", label: "React" },
   { slug: "nextdotjs", label: "Next.js" },
   { slug: "nodedotjs", label: "Node.js" },

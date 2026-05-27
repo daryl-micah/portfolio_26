@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const lr = require\\('lucide-react'\\); console.log\\(Object.keys\\(lr\\).filter\\(k => /coffee|mug|cup/i.test\\(k\\) && !k.endsWith\\('Icon'\\)\\).slice\\(0, 10\\)\\)\")"
+    ]
+  }
+}

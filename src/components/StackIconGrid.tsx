@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import type { ComponentType, SVGProps } from "react";
+import type { ComponentType } from "react";
 import {
   SiDocker,
   SiExpress,
@@ -11,7 +11,6 @@ import {
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
-  SiOpenjdk,
   SiPostgresql,
   SiPython,
   SiReact,
@@ -27,13 +26,32 @@ import {
   VIEWPORT_ONCE,
 } from "./motion/MotionPrimitives";
 
-type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+type IconComponent = ComponentType<{ className?: string }>;
+
+const JavaIcon: IconComponent = ({ className }) => (
+  <span
+    aria-hidden="true"
+    className={className}
+    style={{
+      display: "inline-block",
+      WebkitMaskImage: "url('/icons8-java.svg')",
+      maskImage: "url('/icons8-java.svg')",
+      WebkitMaskSize: "contain",
+      maskSize: "contain",
+      WebkitMaskRepeat: "no-repeat",
+      maskRepeat: "no-repeat",
+      WebkitMaskPosition: "center",
+      maskPosition: "center",
+      backgroundColor: "currentColor",
+    }}
+  />
+);
 
 const ICONS: Record<string, IconComponent> = {
   typescript: SiTypescript,
   javascript: SiJavascript,
   python: SiPython,
-  openjdk: SiOpenjdk,
+  java: JavaIcon,
   react: SiReact,
   nextdotjs: SiNextdotjs,
   nodedotjs: SiNodedotjs,
@@ -86,7 +104,7 @@ function StackIconGrid() {
               title={label}
               aria-label={label}
             >
-              <Icon color="default" className="h-7 w-7 transition-transform" />
+              <Icon className="h-7 w-7 text-muted-foreground transition-colors hover:text-foreground" />
             </motion.li>
           );
         })}
