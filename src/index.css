@@ -156,7 +156,7 @@
 
   body {
     margin: 0;
-    font-family: "Space Grotesk", "Sora", "Manrope", sans-serif;
+    font-family: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
     color: var(--foreground);
     background-color: var(--background);
     background-image:
