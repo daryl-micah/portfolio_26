@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { SVGProps } from "react";
 import {
   AnimatePresence,
   LayoutGroup,
@@ -8,7 +9,19 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, User } from "lucide-react";
+import { SiGithub } from "@icons-pack/react-simple-icons";
+
+const LinkedInIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+  </svg>
+);
 import ProjectCard from "./ProjectCard";
 import StackSection from "./StackSection";
 import ThemeToggle from "./ThemeToggle";
@@ -37,7 +50,6 @@ type HomePageProps = {
   resumeUrl: string;
 };
 
-const HEADLINE_WORDS = ["Full-Stack", "Engineer.", "AI", "systems", "builder."];
 const SECTION_IDS = ["top", "projects", "experience", "stack", "contact"];
 
 const HERO_STATS = [
@@ -342,11 +354,11 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
       <header
         ref={heroRef}
         id="top"
-        className="hero-surface relative w-full overflow-hidden rounded-[1.4rem] border border-border p-5 shadow-[0_20px_45px_-35px_rgba(32,18,0,0.85)] md:p-9"
+        className="relative w-full overflow-hidden py-6 md:py-10"
       >
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full bg-accent/25 blur-3xl"
+          className="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full bg-accent/15 blur-3xl"
           style={
             reduceMotion ? undefined : { y: orbYSpring, scale: orbScaleSpring }
           }
@@ -356,102 +368,119 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           className="pointer-events-none absolute -left-32 bottom-0 h-[360px] w-[360px] rounded-full bg-accent-soft blur-3xl"
         />
 
-        <div className="relative flex items-center gap-4">
+        <motion.div
+          className="relative flex items-center gap-4"
+          variants={staggerContainer(0.07, 0.1)}
+          initial="hidden"
+          animate="show"
+        >
           <motion.div
-            className="flex-1"
-            variants={staggerContainer(0.07, 0.1)}
-            initial="hidden"
-            animate="show"
+            variants={fadeUpSmall}
+            className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-surface-overlay sm:h-16 sm:w-16"
           >
-            <motion.p
+            <img
+              src="/default-removebg.png"
+              alt="Daryl Micah"
+              className="portrait-tint h-full w-full object-cover"
+            />
+          </motion.div>
+          <div className="min-w-0 flex-1">
+            <motion.h1
               variants={fadeUpSmall}
-              className="mb-2 text-base tracking-[0.18em] uppercase text-label"
+              className="text-[clamp(1.75rem,4.2vw,2.75rem)] leading-[1.1] font-semibold tracking-[-0.02em] text-foreground"
             >
               Daryl Micah
-            </motion.p>
-            <h1 className="max-w-[17ch] text-[clamp(2rem,5vw,3.6rem)] leading-[1.1] font-semibold tracking-[-0.02em] text-foreground">
-              {HEADLINE_WORDS.map((word, idx) => (
-                <motion.span
-                  key={`${word}-${idx}`}
-                  variants={{
-                    hidden: { opacity: 0, y: 18 },
-                    show: {
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        duration: 0.55,
-                        ease: [0.22, 1, 0.36, 1],
-                      },
-                    },
-                  }}
-                  className="mr-[0.25em] inline-block"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </h1>
-          </motion.div>
-          <div className="flex w-[34%] min-w-27.5 justify-center">
-            <motion.div
-              className="flex items-center justify-center rounded-3xl bg-surface-overlay/40 p-4"
-              animate={
-                reduceMotion
-                  ? undefined
-                  : { y: [0, -8, 0] }
-              }
-              transition={
-                reduceMotion
-                  ? undefined
-                  : { duration: 6, repeat: Infinity, ease: "easeInOut" }
-              }
+            </motion.h1>
+            <motion.p
+              variants={fadeUpSmall}
+              className="mt-1 text-base text-muted-foreground"
             >
-              <img
-                src="/default-removebg.png"
-                alt="Daryl Micah"
-                className="portrait-tint h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24 md:h-64 md:w-64 lg:h-80 lg:w-80"
-              />
-            </motion.div>
+              Full-Stack Engineer &middot; AI systems builder
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
+
+        <motion.dl
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-8"
+        >
+          <div>
+            <dt className="text-xs font-semibold tracking-[0.18em] uppercase text-label">
+              Location
+            </dt>
+            <dd className="mt-1.5 inline-flex items-center gap-1.5 text-sm text-foreground">
+              <MapPin className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
+              Bengaluru, India
+            </dd>
+          </div>
+          <div>
+            <dt className="text-xs font-semibold tracking-[0.18em] uppercase text-label">
+              Email
+            </dt>
+            <dd className="mt-1.5 inline-flex items-center gap-1.5 text-sm text-foreground">
+              <Mail className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
+              <a
+                href="mailto:darylmicah12@gmail.com"
+                className="border-b border-transparent hover:border-current transition-colors"
+              >
+                darylmicah12@gmail.com
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="text-xs font-semibold tracking-[0.18em] uppercase text-label">
+              Pronouns
+            </dt>
+            <dd className="mt-1.5 inline-flex items-center gap-1.5 text-sm text-foreground">
+              <User className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
+              he/him
+            </dd>
+          </div>
+        </motion.dl>
 
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-3 max-w-[65ch] text-muted-foreground"
+          className="relative mt-8 max-w-[65ch] text-muted-foreground leading-relaxed"
         >
           2.5+ years shipping production web, mobile, and backend systems across
-          React, Node.js, FastAPI, and Python - with a recent focus on RAG
+          React, Node.js, FastAPI, and Python &mdash; with a recent focus on RAG
           pipelines, LLM validation, and agentic AI products.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="relative my-6 flex flex-wrap gap-x-5 gap-y-3"
+          transition={{ duration: 0.5, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mt-6 flex items-center gap-4"
         >
-          <a
-            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
-            href="mailto:darylmicah12@gmail.com"
-          >
-            darylmicah12@gmail.com
-          </a>
           <a
             href="https://github.com/daryl-micah"
             target="_blank"
             rel="noreferrer"
-            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            aria-label="GitHub"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            GitHub
+            <SiGithub className="h-5 w-5" aria-hidden="true" />
           </a>
           <a
             href="https://linkedin.com/in/daryl-micah"
             target="_blank"
             rel="noreferrer"
-            className="border-b border-transparent text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:border-current motion-reduce:transition-none"
+            aria-label="LinkedIn"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            LinkedIn
+            <LinkedInIcon className="h-5 w-5" aria-hidden="true" />
+          </a>
+          <a
+            href="mailto:darylmicah12@gmail.com"
+            aria-label="Email"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Mail className="h-5 w-5" aria-hidden="true" />
           </a>
         </motion.div>
 
