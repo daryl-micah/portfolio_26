@@ -30,6 +30,17 @@ export type ExperienceItem = {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
+    role: "Full Stack Developer",
+    company: "Broadwing Labs",
+    period: "Apr 2026 - Present - Bengaluru",
+    bullets: [
+      "Built an AI listing-generation system orchestrating 6+ pydantic-ai LLM agents with live web-search and self-validation tools, cutting listing creation from ~2 hours to under 5 minutes.",
+      "Engineered a generative-image pipeline (GPT-image, rembg cutouts, scene compositing) on async Celery + FastAPI, cutting image-gen cost ~4x via provider fallbacks and ASIN-level caching.",
+      "Shipped a serverless ingestion platform on AWS Lambda/SQS/S3, integrating Amazon SP-API to normalize 8+ data entities into Postgres with idempotent, replayable backfills.",
+      "Delivered a FastAPI + Next.js dashboard with JWT httpOnly-cookie auth and streaming CSV/XLSX-to-S3 uploads, spanning ~180 commits across 4 services.",
+    ],
+  },
+  {
     role: "Software Developer",
     company: "Logicsoft International",
     period: "Jan 2025 - Apr 2026 - Gurugram",
@@ -110,6 +121,33 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
           "ReAct agent that plans multi-step actions across reading, search, and drafting",
           "Streamed Groq inference for sub-second summary generation",
           "Type-safe Next.js App Router with server actions for mutations",
+        ],
+        role: "Solo design + build",
+        timeline: "2026",
+      },
+    },
+    {
+      tag: "Featured - Fullstack",
+      title: "CCOS",
+      description:
+        "Full-stack influencer-marketing CRM replacing spreadsheet-based campaign tracking, with a derived-metrics engine and Groq-powered AI insights.",
+      stack: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Celery", "Groq"],
+      links: [
+        { label: "Live app", href: "https://ccos.darylmicah.me/" },
+        {
+          label: "GitHub",
+          href: "https://github.com/daryl-micah/ccos",
+        },
+      ],
+      accent: "bg-card",
+      details: {
+        overview:
+          "CCOS (Creator Campaign Operating System) is a full-stack influencer-marketing CRM that replaces spreadsheet-based campaign tracking. It computes derived metrics like ROAS, CPV, and CPM, collects Instagram data with daily historical snapshots, and surfaces Groq-powered AI insights.",
+        highlights: [
+          "Derived-metrics engine computing ROAS, CPV, CPM, and engagement rate",
+          "Instagram data collectors with daily historical snapshots",
+          "Groq-powered AI insights layered on campaign performance data",
+          "FastAPI + Celery async pipelines backed by PostgreSQL and Redis",
         ],
         role: "Solo design + build",
         timeline: "2026",
