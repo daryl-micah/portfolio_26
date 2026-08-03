@@ -224,7 +224,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
           <div className="flex items-center gap-2">
             <a
-              className="hidden rounded-md border border-border bg-surface-overlay px-3 py-1 text-sm text-foreground motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_4px_10px_-2px_rgba(20,16,8,0.18)] motion-reduce:transition-none md:inline-flex"
+              className="hidden rounded-md border border-border bg-surface-overlay px-3 py-1 text-sm text-foreground transition-colors duration-200 ease-out hover:bg-accent/10 hover:text-accent md:inline-flex"
               href={resumeUrl}
               target="_blank"
               rel="noreferrer"
