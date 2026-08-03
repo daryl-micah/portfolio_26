@@ -432,7 +432,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="relative mt-8 max-w-[65ch] text-muted-foreground leading-relaxed"
         >
-          2.5+ years shipping production web, mobile, and backend systems across
+          3+ years shipping production web, mobile, and backend systems across
           React, Node.js, FastAPI, and Python &mdash; with a recent focus on RAG
           pipelines, LLM validation, and agentic AI products.
         </motion.p>

@@ -37,7 +37,7 @@ export const EXPERIENCE: ExperienceItem[] = [
       "Built an AI listing-generation system orchestrating 6+ pydantic-ai LLM agents with live web-search and self-validation tools, cutting listing creation from ~2 hours to under 5 minutes.",
       "Engineered a generative-image pipeline (GPT-image, rembg cutouts, scene compositing) on async Celery + FastAPI, cutting image-gen cost ~4x via provider fallbacks and ASIN-level caching.",
       "Shipped a serverless ingestion platform on AWS Lambda/SQS/S3, integrating Amazon SP-API to normalize 8+ data entities into Postgres with idempotent, replayable backfills.",
-      "Delivered a FastAPI + Next.js dashboard with JWT httpOnly-cookie auth and streaming CSV/XLSX-to-S3 uploads, spanning ~180 commits across 4 services.",
+      "Delivered a FastAPI + Next.js dashboard with JWT httpOnly-cookie auth and streaming CSV/XLSX-to-S3 uploads, spanning ~400 commits across 4 services.",
     ],
   },
   {
