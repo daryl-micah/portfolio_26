@@ -34,10 +34,10 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "Broadwing Labs",
     period: "Apr 2026 - Present - Bengaluru",
     bullets: [
-      "Built an AI listing-generation system orchestrating 6+ pydantic-ai LLM agents with live web-search and self-validation tools, cutting listing creation from ~2 hours to under 5 minutes.",
-      "Engineered a generative-image pipeline (GPT-image, rembg cutouts, scene compositing) on async Celery + FastAPI, cutting image-gen cost ~4x via provider fallbacks and ASIN-level caching.",
-      "Shipped a serverless ingestion platform on AWS Lambda/SQS/S3, integrating Amazon SP-API to normalize 8+ data entities into Postgres with idempotent, replayable backfills.",
-      "Delivered a FastAPI + Next.js dashboard with JWT httpOnly-cookie auth and streaming CSV/XLSX-to-S3 uploads, spanning ~400 commits across 4 services.",
+      "Built an AI listing-generation system orchestrating **6+** pydantic-ai LLM agents with live web-search and self-validation tools, cutting listing creation from **~2 hours** to under **5 minutes**.",
+      "Built a serverless data-ingestion platform for **Stovekraft (Pigeon)**, integrating Amazon SP-API to normalize **8+** data entities into Postgres with idempotent, replayable backfills.",
+      "Delivered a FastAPI + Next.js ecommerce dashboard for **Stovekraft (Pigeon)** with JWT httpOnly-cookie auth and streaming CSV/XLSX-to-S3 uploads, spanning **~400** commits across **4** services.",
+      "Engineered a generative-image pipeline (GPT-image, rembg cutouts, scene compositing) on async Celery + FastAPI, cutting image-gen cost **~4x** via provider fallbacks and ASIN-level caching.",
     ],
   },
   {
@@ -45,8 +45,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "Logicsoft International",
     period: "Jan 2025 - Apr 2026 - Gurugram",
     bullets: [
-      "Built RAG pipelines and an LLM validation engine, reducing manual QA effort by 40%.",
-      "Optimised PostgreSQL-heavy APIs and cut p95 latency by 70% via query tuning and Redis caching.",
+      "Built RAG pipelines and an LLM validation engine, reducing manual QA effort by **40%**.",
+      "Optimised PostgreSQL-heavy APIs and cut p95 latency by **70%** via query tuning and Redis caching.",
       "Shipped React/Next.js frontend features and raised test coverage with Jest and Playwright.",
     ],
   },
@@ -55,7 +55,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "EigenGram",
     period: "Oct - Dec 2024 - Remote",
     bullets: [
-      "Built FastAPI services for AI inference pipelines and improved throughput by 25% through batching.",
+      "Built FastAPI services for AI inference pipelines and improved throughput by **25%** through batching.",
       "Automated deployments with CI/CD pipelines and containerised services with Docker.",
     ],
   },
@@ -64,7 +64,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "Volkswagen IT Services",
     period: "Jul 2023 - Jan 2024 - Pune",
     bullets: [
-      "Reduced data retrieval time by 50% via backend optimisations on enterprise platform APIs.",
+      "Reduced data retrieval time by **50%** via backend optimisations on enterprise platform APIs.",
       "Delivered new features across agile release cycles in a cross-functional team.",
     ],
   },
@@ -103,7 +103,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       title: "Cortex Mail",
       description:
         "Agentic email client that searches inboxes, summarizes threads, and drafts replies using semantic retrieval and LLMs.",
-      stack: ["Next.js", "Groq", "Pinecone", "ReAct", "TypeScript"],
+      stack: ["Next.js", "Groq", "Pinecone", "RAG", "ReAct", "TypeScript"],
       links: [
         { label: "Live app", href: cortexRoute, internal: true },
         {

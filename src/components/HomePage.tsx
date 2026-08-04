@@ -50,7 +50,16 @@ type HomePageProps = {
   resumeUrl: string;
 };
 
-const SECTION_IDS = ["top", "projects", "experience", "stack", "contact"];
+const SECTION_IDS = ["top", "experience", "projects", "stack", "contact"];
+
+function renderBoldText(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
 
 const HERO_STATS = [
   { value: 32, label: "RAG accuracy" },
@@ -165,8 +174,8 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   const navItems = useMemo(
     () =>
       [
-        ["Projects", "projects"],
         ["Experience", "experience"],
+        ["Projects", "projects"],
         ["Stack", "stack"],
         ["Contact", "contact"],
       ] as const,
@@ -495,44 +504,6 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
       <ContributionsGraph username="daryl-micah" />
 
-      <StackIconGrid />
-
-      <motion.section
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_ONCE}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-10 w-full px-5 py-6 md:px-7 md:py-8"
-        id="projects"
-      >
-        <h2 className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">
-          Featured Projects
-        </h2>
-        <motion.div
-          variants={staggerContainer(0.1, 0.05)}
-          initial="hidden"
-          whileInView="show"
-          viewport={VIEWPORT_ONCE}
-          className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2"
-        >
-          {projects.map((project) => (
-            <motion.div
-              key={project.title}
-              variants={{
-                hidden: { opacity: 0, y: 32 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-                },
-              }}
-            >
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.section>
-
       <motion.section
         ref={experienceRef}
         initial={{ opacity: 0, y: 24 }}
@@ -594,7 +565,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
                         variants={fadeUpSmall}
                         className="list-disc text-sm leading-relaxed text-muted-foreground"
                       >
-                        {bullet}
+                        {renderBoldText(bullet)}
                       </motion.li>
                     ))}
                   </motion.ul>
@@ -604,6 +575,44 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           </Accordion>
         </div>
       </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-10 w-full px-5 py-6 md:px-7 md:py-8"
+        id="projects"
+      >
+        <h2 className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">
+          Featured Projects
+        </h2>
+        <motion.div
+          variants={staggerContainer(0.1, 0.05)}
+          initial="hidden"
+          whileInView="show"
+          viewport={VIEWPORT_ONCE}
+          className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2"
+        >
+          {projects.map((project) => (
+            <motion.div
+              key={project.title}
+              variants={{
+                hidden: { opacity: 0, y: 32 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+            >
+              <ProjectCard project={project} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.section>
+
+      <StackIconGrid />
 
       <motion.footer
         initial={{ opacity: 0, y: 24 }}
