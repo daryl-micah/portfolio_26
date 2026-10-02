@@ -154,6 +154,85 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       },
     },
     {
+      tag: "Fullstack - AI",
+      title: "Undertone",
+      description:
+        "Fathom-style meeting notetaker for Hinglish: code-mixed speech-to-text, synced transcripts, AI summaries, and search across Devanagari, romanized and English.",
+      stack: ["Next.js", "Sarvam", "Groq", "Supabase", "PostgreSQL", "TypeScript"],
+      links: [
+        { label: "Live app", href: "https://undertone-8x.vercel.app/" },
+        {
+          label: "GitHub",
+          href: "https://github.com/daryl-micah/undertone",
+        },
+      ],
+      accent: "bg-card",
+      details: {
+        overview:
+          "Undertone is a meeting notetaker built for how Indian teams actually talk: Hindi and English mixed mid-sentence. It keeps what was said as said, lets you read every line as romanized Hinglish or English, and writes summaries and action items that link back to the exact moment.",
+        highlights: [
+          "Sarvam saaras:v3 code-mix transcription with speaker detection: 5 of 5 speakers mapped on a 10-minute test, 96.9% agreement with the script",
+          "Summaries cite transcript lines, converted server-side to timestamps so every claim is checkable by playback",
+          "Full-text search across Devanagari, romanized and English in 0.12–0.18s",
+          "Handles an 8-person, hour-long call: 424-line transcript renders in ~0.4s, rate-limited summaries condensed once then cached",
+        ],
+        role: "Solo design + build",
+        timeline: "2026",
+      },
+    },
+    {
+      tag: "Backend - AI",
+      title: "Freshdesk MCP Connector",
+      description:
+        "MCP server that lets an AI agent read Freshdesk tickets and contacts, with typed schemas, rate-limit handling, opt-in writes, and Razorpay payment verification.",
+      stack: ["MCP", "TypeScript", "Zod", "Freshdesk API", "Razorpay"],
+      links: [
+        {
+          label: "GitHub",
+          href: "https://github.com/daryl-micah/freshdesk-mcp-connector",
+        },
+      ],
+      accent: "bg-card",
+      details: {
+        overview:
+          "A private connector for a merchant tool, built as an MCP (stdio) server. Tools are shaped for an LLM rather than mirroring the Freshdesk API, and the server is read-only by default with opt-in write tools and optional Razorpay payment verification.",
+        highlights: [
+          "List, get and search tools for tickets and contacts with typed Zod input and output schemas",
+          "API-key auth verified at startup so a bad key fails fast with a clear message",
+          "Rate-limit handling: honours Retry-After on 429, backs off on 5xx, and slows near the limit",
+          "Offline mocked tests plus live smoke tests and a documented agent demo",
+        ],
+        role: "Solo design + build",
+        timeline: "2026",
+      },
+    },
+    {
+      tag: "Backend - AI",
+      title: "Avert",
+      description:
+        "Detects breaking changes and deprecations in external APIs and maps them to the exact call sites they affect, with webhook alerts and guarded fix proposals.",
+      stack: ["Python", "PostgreSQL", "Next.js", "GitHub App", "Docker"],
+      links: [
+        {
+          label: "GitHub",
+          href: "https://github.com/daryl-micah/avert-agent",
+        },
+      ],
+      accent: "bg-card",
+      details: {
+        overview:
+          "Avert indexes a codebase's external API usage, tracks lifecycle events like model deprecations, and joins the two to show the blast radius of each change down to the call site.",
+        highlights: [
+          "Incremental static inventory of API call sites persisted in Postgres",
+          "Impact join that drives both the dashboard's lifecycle status and the change feed",
+          "One-shot webhook alerts per affected repository, idempotent across re-runs",
+          "Read-only GitHub App with push-triggered re-indexing; validated on pinned public-repo corpora (7/10 on the first model-deprecation run)",
+        ],
+        role: "Solo design + build",
+        timeline: "2026",
+      },
+    },
+    {
       tag: "Mobile - Fullstack",
       title: "APEDA Peanut",
       description:
