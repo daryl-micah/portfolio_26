@@ -21,11 +21,10 @@ const LinkedInIcon = (props: SVGProps<SVGSVGElement>) => (
     <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
   </svg>
 );
-import ProjectCard from "./ProjectCard";
+import ProjectCard, { ProjectRow } from "./ProjectCard";
 import StackIconGrid from "./StackIconGrid";
 import ThemeToggle from "./ThemeToggle";
 import ScrollProgress from "./ScrollProgress";
-import AnimatedCounter from "./AnimatedCounter";
 import ContributionsGraph from "./ContributionsGraph";
 import MagneticLink from "./MagneticLink";
 import VisitorCounter from "./VisitorCounter";
@@ -50,6 +49,8 @@ type HomePageProps = {
   resumeUrl: string;
 };
 
+const MAIN_PROJECT_COUNT = 4;
+
 const SECTION_IDS = ["top", "experience", "projects", "stack", "contact"];
 
 function renderBoldText(text: string) {
@@ -62,14 +63,17 @@ function renderBoldText(text: string) {
 }
 
 const HERO_STATS = [
-  { value: 32, label: "RAG accuracy" },
-  { value: 70, label: "latency cut" },
-  { value: 40, label: "QA effort cut" },
-  { value: 71, label: "load time" },
+  { value: "+32%", label: "RAG accuracy" },
+  { value: "−70%", label: "p95 latency" },
+  { value: "−40%", label: "manual QA effort" },
+  { value: "−71%", label: "load time" },
 ] as const;
 
 function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
   const projects = getProjects(cortexRoute, peanutUrl);
+  // Order in portfolio.ts decides placement: first is the lead card, then cards, then the list.
+  const mainProjects = projects.slice(0, MAIN_PROJECT_COUNT);
+  const moreProjects = projects.slice(MAIN_PROJECT_COUNT);
   const experienceRef = useRef<HTMLElement | null>(null);
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -371,12 +375,12 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
         >
           <motion.div
             variants={fadeUpSmall}
-            className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-surface-overlay sm:h-16 sm:w-16"
+            className="h-14 w-14 shrink-0 sm:h-16 sm:w-16"
           >
             <img
-              src="/default-removebg.png"
-              alt="Daryl Micah"
-              className="portrait-tint h-full w-full object-cover"
+              src="/logo-mark.png"
+              alt=""
+              className="portrait-tint h-full w-full object-contain"
             />
           </motion.div>
           <div className="min-w-0 flex-1">
@@ -395,45 +399,28 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           </div>
         </motion.div>
 
-        <motion.dl
+        <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-8"
+          className="relative mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground"
         >
-          <div>
-            <dt className="text-xs font-semibold tracking-[0.18em] uppercase text-label">
-              Location
-            </dt>
-            <dd className="mt-1.5 inline-flex items-center gap-1.5 text-sm text-foreground">
-              <MapPin className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
-              Bengaluru, India
-            </dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold tracking-[0.18em] uppercase text-label">
-              Email
-            </dt>
-            <dd className="mt-1.5 inline-flex items-center gap-1.5 text-sm text-foreground">
-              <Mail className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
-              <a
-                href="mailto:darylmicah12@gmail.com"
-                className="border-b border-transparent hover:border-current transition-colors"
-              >
-                darylmicah12@gmail.com
-              </a>
-            </dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold tracking-[0.18em] uppercase text-label">
-              Pronouns
-            </dt>
-            <dd className="mt-1.5 inline-flex items-center gap-1.5 text-sm text-foreground">
-              <User className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
-              he/him
-            </dd>
-          </div>
-        </motion.dl>
+          <span className="inline-flex items-center gap-1.5">
+            <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+            Bengaluru, India
+          </span>
+          <a
+            href="mailto:darylmicah12@gmail.com"
+            className="inline-flex items-center gap-1.5 border-b border-transparent transition-colors hover:border-current hover:text-foreground"
+          >
+            <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+            darylmicah12@gmail.com
+          </a>
+          <span className="inline-flex items-center gap-1.5">
+            <User className="h-3.5 w-3.5" aria-hidden="true" />
+            he/him
+          </span>
+        </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -494,7 +481,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
                 </span>
               )}
               <span className="font-semibold text-accent">
-                <AnimatedCounter target={value} suffix="%" />
+                {value}
               </span>
               <span>{label}</span>
             </span>
@@ -538,7 +525,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
               <AccordionItem
                 key={exp.company}
                 value={`exp-${index}`}
-                className="rounded-xl border border-border bg-card px-4 last:border-b"
+                className="relative rounded-xl border border-border bg-card px-4 last:border-b"
               >
                 <span
                   aria-hidden="true"
@@ -594,9 +581,16 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           viewport={VIEWPORT_ONCE}
           className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2"
         >
-          {projects.map((project) => (
+          {mainProjects.map((project, index) => (
             <motion.div
               key={project.title}
+              className={
+                // lead card spans the row; so does a last card that would sit alone
+                index === 0 ||
+                (index === mainProjects.length - 1 && mainProjects.length % 2 === 0)
+                  ? "md:col-span-2"
+                  : undefined
+              }
               variants={{
                 hidden: { opacity: 0, y: 32 },
                 show: {
@@ -606,10 +600,19 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
                 },
               }}
             >
-              <ProjectCard project={project} />
+              <ProjectCard project={project} lead={index === 0} />
             </motion.div>
           ))}
         </motion.div>
+
+        <h3 className="mt-10 text-sm font-semibold text-foreground">
+          More projects
+        </h3>
+        <ul className="mt-1 divide-y divide-border">
+          {moreProjects.map((project) => (
+            <ProjectRow key={project.title} project={project} />
+          ))}
+        </ul>
       </motion.section>
 
       <StackIconGrid />

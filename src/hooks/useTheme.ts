@@ -1,35 +1,36 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
 
 const STORAGE_KEY = "theme";
 
-function readInitialTheme(): Theme {
-  if (typeof document === "undefined") {
-    return "light";
-  }
+// The <html> class is the single source of truth, so every useTheme caller stays in sync.
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => observer.disconnect();
+}
+
+function getTheme(): Theme {
   return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
-function useTheme() {
-  const [theme, setThemeState] = useState<Theme>(readInitialTheme);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    root.classList.toggle("dark", theme === "dark");
-  }, [theme]);
-
-  const setTheme = useCallback((next: Theme) => {
+function setTheme(next: Theme) {
+  document.documentElement.classList.toggle("dark", next === "dark");
+  try {
     localStorage.setItem(STORAGE_KEY, next);
-    setThemeState(next);
-  }, []);
+  } catch {
+    // storage unavailable; theme still applies for this session
+  }
+}
 
+function useTheme() {
+  const theme = useSyncExternalStore(subscribe, getTheme, () => "light" as Theme);
   const toggle = useCallback(() => {
-    setThemeState((prev) => {
-      const next: Theme = prev === "dark" ? "light" : "dark";
-      localStorage.setItem(STORAGE_KEY, next);
-      return next;
-    });
+    setTheme(getTheme() === "dark" ? "light" : "dark");
   }, []);
 
   return { theme, setTheme, toggle } as const;

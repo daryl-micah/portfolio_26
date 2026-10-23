@@ -18,9 +18,10 @@ import {
 
 type ProjectDetailsDialogProps = {
   project: Project;
+  className?: string;
 };
 
-function ProjectDetailsDialog({ project }: ProjectDetailsDialogProps) {
+function ProjectDetailsDialog({ project, className }: ProjectDetailsDialogProps) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const details = project.details;
@@ -32,11 +33,8 @@ function ProjectDetailsDialog({ project }: ProjectDetailsDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button
-          type="button"
-          className="rounded-md border border-transparent text-sm font-medium text-foreground hover:text-accent transition-colors"
-        >
-          Details &rarr;
+        <button type="button" className={className}>
+          Details
         </button>
       </DialogTrigger>
       <DialogContent className="max-w-xl bg-card border-border">
@@ -75,6 +73,13 @@ function ProjectDetailsDialog({ project }: ProjectDetailsDialogProps) {
               </motion.li>
             ))}
           </motion.ul>
+
+          <motion.p
+            variants={fadeUpSmall}
+            className="mt-5 text-sm text-muted-foreground"
+          >
+            {project.stack.join(", ")}
+          </motion.p>
 
           {(details.role || details.timeline) && (
             <motion.dl

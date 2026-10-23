@@ -13,6 +13,7 @@ export type ProjectDetails = {
 
 export type Project = {
   tag: string;
+  featured?: boolean;
   title: string;
   description: string;
   stack: string[];
@@ -99,7 +100,37 @@ export const STACK_ICONS: StackIcon[] = [
 export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
   return [
     {
-      tag: "Featured - AI",
+      featured: true,
+      tag: "AI",
+      title: "Avert",
+      description:
+        "Detects breaking changes and deprecations in external APIs and maps them to the exact call sites they affect, with webhook alerts and guarded fix proposals.",
+      stack: ["Python", "PostgreSQL", "Next.js", "GitHub App", "Docker"],
+      links: [
+        { label: "Live app", href: "https://avert-agent.vercel.app/" },
+        {
+          label: "GitHub",
+          href: "https://github.com/daryl-micah/avert",
+        },
+      ],
+      accent:
+        "bg-[linear-gradient(145deg,var(--accent-soft)_0%,var(--card)_100%)]",
+      details: {
+        overview:
+          "Avert indexes a codebase's external API usage, tracks lifecycle events like model deprecations, and joins the two to show the blast radius of each change down to the call site.",
+        highlights: [
+          "Incremental static inventory of API call sites persisted in Postgres",
+          "Impact join that drives both the dashboard's lifecycle status and the change feed",
+          "One-shot webhook alerts per affected repository, idempotent across re-runs",
+          "Read-only GitHub App with push-triggered re-indexing; validated on pinned public-repo corpora (7/10 on the first model-deprecation run)",
+        ],
+        role: "Solo design + build",
+        timeline: "2026",
+      },
+    },
+    {
+      featured: true,
+      tag: "AI",
       title: "Cortex Mail",
       description:
         "Agentic email client that searches inboxes, summarizes threads, and drafts replies using semantic retrieval and LLMs.",
@@ -111,8 +142,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
           href: "https://github.com/daryl-micah/cortex-mail",
         },
       ],
-      accent:
-        "bg-[linear-gradient(145deg,var(--accent-soft)_0%,var(--card)_100%)]",
+      accent: "bg-card",
       details: {
         overview:
           "Cortex Mail is an agentic email client that understands your inbox semantically. It indexes threads into a vector store, summarizes long conversations, and drafts on-tone replies using a ReAct-style reasoning loop.",
@@ -127,7 +157,8 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       },
     },
     {
-      tag: "Featured - Fullstack",
+      featured: true,
+      tag: "Fullstack",
       title: "CCOS",
       description:
         "Full-stack influencer-marketing CRM replacing spreadsheet-based campaign tracking, with a derived-metrics engine and Groq-powered AI insights.",
@@ -154,7 +185,33 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       },
     },
     {
-      tag: "Fullstack - AI",
+      tag: "Backend AI",
+      title: "Freshdesk MCP Connector",
+      description:
+        "MCP server that lets an AI agent read Freshdesk tickets and contacts, with typed schemas, rate-limit handling, opt-in writes, and Razorpay payment verification.",
+      stack: ["MCP", "TypeScript", "Zod", "Freshdesk API", "Razorpay"],
+      links: [
+        {
+          label: "GitHub",
+          href: "https://github.com/daryl-micah/freshdesk-mcp-connector",
+        },
+      ],
+      accent: "bg-card",
+      details: {
+        overview:
+          "A private connector for a merchant tool, built as an MCP (stdio) server. Tools are shaped for an LLM rather than mirroring the Freshdesk API, and the server is read-only by default with opt-in write tools and optional Razorpay payment verification.",
+        highlights: [
+          "List, get and search tools for tickets and contacts with typed Zod input and output schemas",
+          "API-key auth verified at startup so a bad key fails fast with a clear message",
+          "Rate-limit handling: honours Retry-After on 429, backs off on 5xx, and slows near the limit",
+          "Offline mocked tests plus live smoke tests and a documented agent demo",
+        ],
+        role: "Solo design + build",
+        timeline: "2026",
+      },
+    },
+    {
+      tag: "Fullstack AI",
       title: "Undertone",
       description:
         "Fathom-style meeting notetaker for Hinglish: code-mixed speech-to-text, synced transcripts, AI summaries, and search across Devanagari, romanized and English.",
@@ -181,59 +238,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       },
     },
     {
-      tag: "Backend - AI",
-      title: "Freshdesk MCP Connector",
-      description:
-        "MCP server that lets an AI agent read Freshdesk tickets and contacts, with typed schemas, rate-limit handling, opt-in writes, and Razorpay payment verification.",
-      stack: ["MCP", "TypeScript", "Zod", "Freshdesk API", "Razorpay"],
-      links: [
-        {
-          label: "GitHub",
-          href: "https://github.com/daryl-micah/freshdesk-mcp-connector",
-        },
-      ],
-      accent: "bg-card",
-      details: {
-        overview:
-          "A private connector for a merchant tool, built as an MCP (stdio) server. Tools are shaped for an LLM rather than mirroring the Freshdesk API, and the server is read-only by default with opt-in write tools and optional Razorpay payment verification.",
-        highlights: [
-          "List, get and search tools for tickets and contacts with typed Zod input and output schemas",
-          "API-key auth verified at startup so a bad key fails fast with a clear message",
-          "Rate-limit handling: honours Retry-After on 429, backs off on 5xx, and slows near the limit",
-          "Offline mocked tests plus live smoke tests and a documented agent demo",
-        ],
-        role: "Solo design + build",
-        timeline: "2026",
-      },
-    },
-    {
-      tag: "Backend - AI",
-      title: "Avert",
-      description:
-        "Detects breaking changes and deprecations in external APIs and maps them to the exact call sites they affect, with webhook alerts and guarded fix proposals.",
-      stack: ["Python", "PostgreSQL", "Next.js", "GitHub App", "Docker"],
-      links: [
-        {
-          label: "GitHub",
-          href: "https://github.com/daryl-micah/avert-agent",
-        },
-      ],
-      accent: "bg-card",
-      details: {
-        overview:
-          "Avert indexes a codebase's external API usage, tracks lifecycle events like model deprecations, and joins the two to show the blast radius of each change down to the call site.",
-        highlights: [
-          "Incremental static inventory of API call sites persisted in Postgres",
-          "Impact join that drives both the dashboard's lifecycle status and the change feed",
-          "One-shot webhook alerts per affected repository, idempotent across re-runs",
-          "Read-only GitHub App with push-triggered re-indexing; validated on pinned public-repo corpora (7/10 on the first model-deprecation run)",
-        ],
-        role: "Solo design + build",
-        timeline: "2026",
-      },
-    },
-    {
-      tag: "Mobile - Fullstack",
+      tag: "Mobile",
       title: "APEDA Peanut",
       description:
         "Offline-first traceability app with QR scanning, geofencing, image capture, and mobile-to-backend sync.",
@@ -254,7 +259,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       },
     },
     {
-      tag: "Backend - AI",
+      tag: "Backend AI",
       title: "Agentic AI Platform",
       description:
         "LLM validation and RAG platform with FastAPI orchestration, SQLCoder-based query generation, and Redis caching.",
@@ -280,7 +285,7 @@ export function getProjects(cortexRoute: string, peanutUrl: string): Project[] {
       },
     },
     {
-      tag: "Web - AI",
+      tag: "Web AI",
       title: "AI RFP Assistant",
       description:
         "AI-powered RFP workflow that structures requests, manages vendors, and automates email-based proposal handling.",
