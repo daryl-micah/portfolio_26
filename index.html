@@ -15,7 +15,7 @@
       (function () {
         try {
           var stored = localStorage.getItem("theme");
-          if (stored !== "light") {
+          if (stored === "dark") {
             document.documentElement.classList.add("dark");
           }
         } catch (e) {}
