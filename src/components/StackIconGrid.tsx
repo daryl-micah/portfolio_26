@@ -1,12 +1,11 @@
-import { motion } from "motion/react";
 import type { ComponentType } from "react";
+import { DatabaseSearch } from "lucide-react";
 import {
   SiDocker,
   SiExpress,
   SiFastapi,
   SiGit,
   SiGithub,
-  SiJavascript,
   SiLangchain,
   SiMongodb,
   SiNextdotjs,
@@ -20,38 +19,36 @@ import {
   SiVite,
 } from "@icons-pack/react-simple-icons";
 import { STACK_ICONS } from "../data/portfolio";
-import {
-  fadeInScale,
-  staggerContainer,
-  VIEWPORT_ONCE,
-} from "./motion/MotionPrimitives";
 
 type IconComponent = ComponentType<{ className?: string }>;
 
-const JavaIcon: IconComponent = ({ className }) => (
-  <span
-    aria-hidden="true"
-    className={className}
-    style={{
-      display: "inline-block",
-      WebkitMaskImage: "url('/icons8-java.svg')",
-      maskImage: "url('/icons8-java.svg')",
-      WebkitMaskSize: "contain",
-      maskSize: "contain",
-      WebkitMaskRepeat: "no-repeat",
-      maskRepeat: "no-repeat",
-      WebkitMaskPosition: "center",
-      maskPosition: "center",
-      backgroundColor: "currentColor",
-    }}
-  />
-);
+// For logos not in Simple Icons: a local SVG used as a mask so it takes the text colour.
+function maskIcon(src: string): IconComponent {
+  return ({ className }) => (
+    <span
+      aria-hidden="true"
+      className={className}
+      style={{
+        display: "inline-block",
+        WebkitMaskImage: `url('${src}')`,
+        maskImage: `url('${src}')`,
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+        backgroundColor: "currentColor",
+      }}
+    />
+  );
+}
 
 const ICONS: Record<string, IconComponent> = {
   typescript: SiTypescript,
-  javascript: SiJavascript,
   python: SiPython,
-  java: JavaIcon,
+  aws: maskIcon("/aws.svg"),
+  rag: DatabaseSearch,
   react: SiReact,
   nextdotjs: SiNextdotjs,
   nodedotjs: SiNodedotjs,
@@ -70,46 +67,32 @@ const ICONS: Record<string, IconComponent> = {
 
 function StackIconGrid() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={VIEWPORT_ONCE}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+    <section
       className="mt-10 w-full px-5 md:px-7"
       id="stack"
       aria-label="Tech stack"
     >
-      <p className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">
-        Tech Stack
-      </p>
-      <motion.ul
-        variants={staggerContainer(0.03, 0.05)}
-        initial="hidden"
-        whileInView="show"
-        viewport={VIEWPORT_ONCE}
-        className="grid grid-cols-6 gap-x-4 gap-y-5 sm:grid-cols-9"
-      >
+      <h2 className="mb-4 text-lg font-semibold tracking-[-0.01em] text-foreground">
+        Tech stack
+      </h2>
+      <ul className="grid grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-6">
         {STACK_ICONS.map(({ slug, label }) => {
           const Icon = ICONS[slug];
           if (!Icon) {
             return null;
           }
           return (
-            <motion.li
+            <li
               key={slug}
-              variants={fadeInScale}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 18 }}
-              className="flex items-center justify-center"
-              title={label}
-              aria-label={label}
+              className="flex flex-col items-center gap-2 text-center text-xs text-muted-foreground"
             >
-              <Icon className="h-7 w-7 text-muted-foreground transition-colors hover:text-foreground" />
-            </motion.li>
+              <Icon className="h-6 w-6" />
+              {label}
+            </li>
           );
         })}
-      </motion.ul>
-    </motion.section>
+      </ul>
+    </section>
   );
 }
 

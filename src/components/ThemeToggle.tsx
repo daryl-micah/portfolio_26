@@ -13,7 +13,7 @@ function ThemeToggle() {
       aria-checked={isDark}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       onClick={toggle}
-      className="relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface-overlay text-foreground transition-colors hover:bg-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface-overlay text-foreground transition-[color,background-color,transform] duration-150 ease-out hover:bg-accent-soft motion-safe:active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       <AnimatePresence mode="wait" initial={false}>
         {isDark ? (

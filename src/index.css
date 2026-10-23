@@ -195,33 +195,4 @@
     filter: brightness(1.05) saturate(1.4);
   }
 
-  .gradient-text {
-    background: linear-gradient(
-      120deg,
-      var(--foreground) 0%,
-      var(--accent) 50%,
-      var(--foreground) 100%
-    );
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradient-pan 6s linear infinite;
-  }
-
-  @keyframes gradient-pan {
-    from {
-      background-position: 0% 50%;
-    }
-    to {
-      background-position: 200% 50%;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .gradient-text {
-      animation: none;
-    }
-  }
-
 }

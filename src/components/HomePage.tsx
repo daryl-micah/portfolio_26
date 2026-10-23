@@ -38,7 +38,6 @@ import {
   fadeUpSmall,
   springBouncy,
   staggerContainer,
-  VIEWPORT_ONCE,
 } from "./motion/MotionPrimitives";
 import { EXPERIENCE, getProjects } from "../data/portfolio";
 import useActiveSection from "../hooks/useActiveSection";
@@ -237,7 +236,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
           <div className="flex items-center gap-2">
             <a
-              className="hidden rounded-md border border-border bg-surface-overlay px-3 py-1 text-sm text-foreground transition-colors duration-200 ease-out hover:bg-accent/10 hover:text-accent md:inline-flex"
+              className="hidden rounded-md border border-border bg-surface-overlay px-3 py-1 text-sm text-foreground transition-[color,background-color,transform] duration-150 ease-out hover:bg-accent/10 hover:text-accent motion-safe:active:scale-[0.97] md:inline-flex"
               href={resumeUrl}
               target="_blank"
               rel="noreferrer"
@@ -251,7 +250,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
               aria-label="Open navigation menu"
               aria-expanded={mobileNavOpen}
               aria-controls="mobile-navigation"
-              className="inline-flex items-center justify-center rounded-md border border-border bg-surface-overlay px-3 py-2 text-sm text-foreground md:hidden"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-surface-overlay px-3 py-2 text-sm text-foreground transition-transform duration-150 ease-out motion-safe:active:scale-[0.97] md:hidden"
               onClick={() => setMobileNavOpen(true)}
             >
               Menu
@@ -468,9 +467,8 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
         <motion.p
           initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={VIEWPORT_ONCE}
-          transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-sm text-muted-foreground"
         >
           {HERO_STATS.map(({ value, label }, idx) => (
@@ -491,16 +489,12 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
 
       <ContributionsGraph username="daryl-micah" />
 
-      <motion.section
+      <section
         ref={experienceRef}
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_ONCE}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="relative mt-10 w-full px-5 py-6 md:px-7 md:py-8"
         id="experience"
       >
-        <h2 className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">
+        <h2 className="mb-4 text-lg font-semibold tracking-[-0.01em] text-foreground">
           Experience
         </h2>
         <div className="relative mt-5">
@@ -561,28 +555,20 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             ))}
           </Accordion>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.section
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_ONCE}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      <section
         className="mt-10 w-full px-5 py-6 md:px-7 md:py-8"
         id="projects"
       >
-        <h2 className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">
-          Featured Projects
+        <h2 className="mb-4 text-lg font-semibold tracking-[-0.01em] text-foreground">
+          Projects
         </h2>
-        <motion.div
-          variants={staggerContainer(0.1, 0.05)}
-          initial="hidden"
-          whileInView="show"
-          viewport={VIEWPORT_ONCE}
+        <div
           className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2"
         >
           {mainProjects.map((project, index) => (
-            <motion.div
+            <div
               key={project.title}
               className={
                 // lead card spans the row; so does a last card that would sit alone
@@ -591,19 +577,11 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
                   ? "md:col-span-2"
                   : undefined
               }
-              variants={{
-                hidden: { opacity: 0, y: 32 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-                },
-              }}
             >
               <ProjectCard project={project} lead={index === 0} />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         <h3 className="mt-10 text-sm font-semibold text-foreground">
           More projects
@@ -613,20 +591,16 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             <ProjectRow key={project.title} project={project} />
           ))}
         </ul>
-      </motion.section>
+      </section>
 
       <StackIconGrid />
 
-      <motion.footer
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_ONCE}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      <footer
         className="mt-10 mb-5 w-full px-5 py-6 md:px-7 md:py-8"
         id="contact"
       >
         <h2 className="text-[clamp(1.4rem,3.2vw,2rem)] font-semibold leading-snug">
-          <span className="gradient-text">Let&apos;s Build</span>
+          <span className="text-accent">Let&apos;s build</span>
         </h2>
         <p className="mt-1 text-muted-foreground">
           Open to fullstack and backend+AI roles at product-focused companies.
@@ -667,14 +641,10 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
             />
           </MagneticLink>
         </div>
-      </motion.footer>
+      </footer>
 
-      <motion.section
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_ONCE}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-10 mb-5 grid w-full grid-cols-1 items-center gap-6 border-t border-border pt-8 md:grid-cols-[1fr_auto]"
+      <section
+        className="mx-5 mt-10 mb-5 grid grid-cols-1 items-center gap-6 border-t md:mx-7 border-border pt-8 md:grid-cols-[1fr_auto]"
         aria-label="Closing remarks"
       >
         <blockquote className="border-l-2 border-border pl-4 text-sm leading-relaxed text-muted-foreground">
@@ -684,7 +654,7 @@ function HomePage({ cortexRoute, peanutUrl, resumeUrl }: HomePageProps) {
           </footer>
         </blockquote>
         <VisitorCounter />
-      </motion.section>
+      </section>
     </main>
   );
 }

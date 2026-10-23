@@ -1,7 +1,5 @@
-import { motion } from "motion/react";
 import { GitHubCalendar } from "react-github-calendar";
 import useTheme from "../hooks/useTheme";
-import { VIEWPORT_ONCE } from "./motion/MotionPrimitives";
 
 const lightTheme = [
   "oklch(0.92 0.020 80)",
@@ -27,17 +25,13 @@ function ContributionsGraph({ username }: ContributionsGraphProps) {
   const { theme } = useTheme();
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={VIEWPORT_ONCE}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+    <section
       className="mt-10 w-full px-5 md:px-7"
       aria-label="GitHub contributions"
     >
-      <p className="mb-4 text-xs font-semibold tracking-[0.18em] uppercase text-label">
-        GitHub Contributions
-      </p>
+      <h2 className="mb-4 text-lg font-semibold tracking-[-0.01em] text-foreground">
+        GitHub contributions
+      </h2>
       <div
         className="contributions-graph overflow-x-auto text-muted-foreground"
         key={theme}
@@ -54,7 +48,7 @@ function ContributionsGraph({ username }: ContributionsGraphProps) {
           }}
         />
       </div>
-    </motion.section>
+    </section>
   );
 }
 

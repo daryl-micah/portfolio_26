@@ -78,9 +78,9 @@ export type StackIcon = {
 
 export const STACK_ICONS: StackIcon[] = [
   { slug: "typescript", label: "TypeScript" },
-  { slug: "javascript", label: "JavaScript" },
   { slug: "python", label: "Python" },
-  { slug: "java", label: "Java" },
+  { slug: "aws", label: "AWS" },
+  { slug: "rag", label: "RAG" },
   { slug: "react", label: "React" },
   { slug: "nextdotjs", label: "Next.js" },
   { slug: "nodedotjs", label: "Node.js" },
